@@ -6,17 +6,13 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    symbolCode: {
+    symbol_code: {
       type: DataTypes.STRING(45),
-      allowNull: true
+      allowNull: false
     },
     city: {
       type: DataTypes.STRING(45),
-      allowNull: true
-    },
-    country: {
-      type: DataTypes.STRING(45),
-      allowNull: true
+      allowNull: false
     }
   }, {
     sequelize,

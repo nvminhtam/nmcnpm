@@ -6,40 +6,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    amount: {
-      type: DataTypes.STRING(45),
-      allowNull: true
-    },
-    first_name: {
-      type: DataTypes.STRING(45),
-      allowNull: true
-    },
-    last_name: {
-      type: DataTypes.STRING(45),
-      allowNull: true
-    },
-    email: {
-      type: DataTypes.STRING(45),
-      allowNull: true
-    },
-    telephone: {
-      type: DataTypes.STRING(45),
-      allowNull: true
-    },
-    status: {
-      type: DataTypes.STRING(45),
-      allowNull: true
-    },
-    Flight_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      references: {
-        model: 'flight',
-        key: 'id'
-      }
-    },
-    Customer_id: {
+    customer_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -48,13 +15,42 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id'
       }
     },
-    Monthly_Report_id: {
+    flight_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      primaryKey: true,
       references: {
-        model: 'monthly_report',
+        model: 'flight',
         key: 'id'
       }
+    },
+    last_name: {
+      type: DataTypes.STRING(45),
+      allowNull: true
+    },
+    first_name: {
+      type: DataTypes.STRING(45),
+      allowNull: true
+    },
+    email: {
+      type: DataTypes.STRING(45),
+      allowNull: false
+    },
+    telephone: {
+      type: DataTypes.STRING(45),
+      allowNull: false
+    },
+    num_of_travelers: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    amount: {
+      type: DataTypes.STRING(45),
+      allowNull: false
+    },
+    status: {
+      type: DataTypes.STRING(45),
+      allowNull: true
     }
   }, {
     sequelize,
@@ -67,8 +63,8 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "id" },
-          { name: "Flight_id" },
-          { name: "Customer_id" },
+          { name: "customer_id" },
+          { name: "flight_id" },
         ]
       },
       {
@@ -83,21 +79,14 @@ module.exports = function(sequelize, DataTypes) {
         name: "fk_Bill_Flight1_idx",
         using: "BTREE",
         fields: [
-          { name: "Flight_id" },
+          { name: "flight_id" },
         ]
       },
       {
         name: "fk_Bill_Customer1_idx",
         using: "BTREE",
         fields: [
-          { name: "Customer_id" },
-        ]
-      },
-      {
-        name: "fk_Bill_Monthly_Report1_idx",
-        using: "BTREE",
-        fields: [
-          { name: "Monthly_Report_id" },
+          { name: "customer_id" },
         ]
       },
     ]

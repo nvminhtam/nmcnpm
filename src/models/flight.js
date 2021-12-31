@@ -8,19 +8,19 @@ module.exports = function(sequelize, DataTypes) {
     },
     departure_airport_id: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: false
     },
     arrival_airport_id: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: false
     },
     departure_time: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: false
     },
     arrivalTime: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: false
     },
     status: {
       type: DataTypes.STRING(45),

@@ -1,12 +1,12 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('extend_flight_has_seat_class', {
-    extend_flight_id: {
+  return sequelize.define('flight_has_seat_class', {
+    flight_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       references: {
-        model: 'extend_flight',
+        model: 'flight',
         key: 'id'
       }
     },
@@ -21,15 +21,15 @@ module.exports = function(sequelize, DataTypes) {
     },
     price: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: false
     },
     seat_count: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: false
     }
   }, {
     sequelize,
-    tableName: 'extend_flight_has_seat_class',
+    tableName: 'flight_has_seat_class',
     timestamps: false,
     indexes: [
       {
@@ -37,22 +37,22 @@ module.exports = function(sequelize, DataTypes) {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "extend_flight_id" },
+          { name: "flight_id" },
           { name: "seat_class_id" },
         ]
       },
       {
-        name: "fk_extend_flight_has_Seat_Class_Seat_Class1_idx",
+        name: "fk_flight_has_seat_class_seat_class1_idx",
         using: "BTREE",
         fields: [
           { name: "seat_class_id" },
         ]
       },
       {
-        name: "fk_extend_flight_has_Seat_Class_extend_flight1_idx",
+        name: "fk_flight_has_seat_class_flight1_idx",
         using: "BTREE",
         fields: [
-          { name: "extend_flight_id" },
+          { name: "flight_id" },
         ]
       },
     ]
