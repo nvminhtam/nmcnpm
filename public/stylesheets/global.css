@@ -1,0 +1,174 @@
+:root {
+    --primary: #384aeb;
+    --black: #222;
+    --grey: #777;
+    --cream: #f1f6f7;
+    --white: #fff;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+}
+
+h2,
+h3 {
+    font-family: "Oswald", sans-serif;
+}
+
+a {
+    transition: 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary);
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.text-primary {
+    color: var(--primary);
+}
+
+.navbar-brand {
+    font-size: 2rem;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.btn {
+    padding: 0.5rem 2rem;
+    border: 1px solid var(--primary);
+    background-color: var(--primary);
+    font-weight: 500;
+    color: var(--white) !important;
+}
+
+.btn:hover {
+    background-color: var(--white);
+    color: var(--primary) !important;
+}
+
+.delete-btn {
+    padding: 0.2rem 1rem;
+    line-height: 100%;
+    border-radius: 5px;
+    border: 1px solid #dc3545;
+    background-color: #dc3545;
+    font-weight: 500;
+    color: var(--white) !important;
+}
+
+.delete-btn:hover {
+    color: #dc3545 !important;
+    font-weight: 500;
+    background-color: var(--white);
+}
+
+.blue-btn {
+    padding: 0.2rem 1rem;
+    line-height: 100%;
+    border-radius: 5px;
+    border: 1px solid #0DCAF0;
+    background-color: #0DCAF0;
+    font-weight: 500;
+    color: var(--white);
+}
+
+.blue-btn:hover {
+    color: #0DCAF0 !important;
+    font-weight: 500;
+    background-color: var(--white);
+}
+
+.gray-btn {
+    padding: 0.5rem 2rem;
+    background: var(--cream);
+    border: 1px solid var(--cream);
+    border-radius: 30px;
+    color: var(--black);
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+.gray-btn:hover {
+    background: var(--grey);
+    color: var(--white);
+    transition: all 0.3s;
+}
+
+.underline-hover {
+    display: inline-block;
+    position: relative;
+}
+
+.underline-hover:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.underline-hover:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.nav-btn {
+    border: 1px solid #ddd;
+    background-color: var(--white);
+    color: var(--black) !important;
+}
+
+.nav-btn:hover {
+    border-color: var(--primary);
+    color: var(--black);
+}
+
+.error {
+    border: 1px solid #f44336;
+    color: #f44336;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+}
+
+.disabled {
+    cursor: default;
+    pointer-events: none;
+    opacity: .5;
+}
+
+@media screen and (max-width: 576px) {
+    .product-info-name {
+        font-size: 17px;
+    }
+    .product-price {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .btn {
+        padding: 8px 25px !important;
+    }
+}
+
+@media screen and (min-width: 991px) {
+    .subscribe-title {
+        font-size: 36px;
+    }
+}
