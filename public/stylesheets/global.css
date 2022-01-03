@@ -53,10 +53,7 @@ header {
     color: var(--white) !important;
 }
 
-.btn:hover {
-    background-color: var(--white);
-    color: var(--primary) !important;
-}
+
 
 .delete-btn {
     padding: 0.2rem 1rem;
