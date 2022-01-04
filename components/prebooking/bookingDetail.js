@@ -5,6 +5,5 @@ module.exports = {
     },
     bookingDetail: (req, res) => {
         res.render('prebooking/prebookingDetail', { title: 'Prebooking' });
-
     }
 }
