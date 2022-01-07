@@ -22,10 +22,8 @@ function initModels(sequelize) {
   var seat_class = _seat_class(sequelize, DataTypes);
   var traveler_details = _traveler_details(sequelize, DataTypes);
 
-  customer.belongsToMany(flight, { as: 'flight_id_flights', through: bill, foreignKey: "customer_id", otherKey: "flight_id" });
-  flight.belongsToMany(customer, { as: 'customer_id_customers', through: bill, foreignKey: "flight_id", otherKey: "customer_id" });
   flight.belongsToMany(seat_class, { as: 'seat_class_id_seat_classes', through: flight_has_seat_class, foreignKey: "flight_id", otherKey: "seat_class_id" });
-  seat_class.belongsToMany(flight, { as: 'flight_id_flight_flight_has_seat_classes', through: flight_has_seat_class, foreignKey: "seat_class_id", otherKey: "flight_id" });
+  seat_class.belongsToMany(flight, { as: 'flight_id_flights', through: flight_has_seat_class, foreignKey: "seat_class_id", otherKey: "flight_id" });
   extend_flight.belongsTo(airport, { as: "departure_airport", foreignKey: "departure_airport_id"});
   airport.hasMany(extend_flight, { as: "extend_flights", foreignKey: "departure_airport_id"});
   extend_flight.belongsTo(airport, { as: "arrival_airport", foreignKey: "arrival_airport_id"});
@@ -42,8 +40,8 @@ function initModels(sequelize) {
   flight.hasMany(flight_has_seat_class, { as: "flight_has_seat_classes", foreignKey: "flight_id"});
   traveler_details.belongsTo(flight_has_seat_class, { as: "flight", foreignKey: "flight_id"});
   flight_has_seat_class.hasMany(traveler_details, { as: "traveler_details", foreignKey: "flight_id"});
-  traveler_details.belongsTo(flight_has_seat_class, { as: "class", foreignKey: "class_id"});
-  flight_has_seat_class.hasMany(traveler_details, { as: "class_traveler_details", foreignKey: "class_id"});
+  traveler_details.belongsTo(flight_has_seat_class, { as: "seat_class", foreignKey: "seat_class_id"});
+  flight_has_seat_class.hasMany(traveler_details, { as: "seat_class_traveler_details", foreignKey: "seat_class_id"});
   extend_flight.belongsTo(plane, { as: "plane", foreignKey: "plane_id"});
   plane.hasMany(extend_flight, { as: "extend_flights", foreignKey: "plane_id"});
   flight_has_seat_class.belongsTo(seat_class, { as: "seat_class", foreignKey: "seat_class_id"});
