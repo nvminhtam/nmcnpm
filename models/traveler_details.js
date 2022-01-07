@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('traveler_details', {
     id: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
@@ -9,7 +10,6 @@ module.exports = function(sequelize, DataTypes) {
     bill_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
       references: {
         model: 'bill',
         key: 'id'
@@ -50,16 +50,14 @@ module.exports = function(sequelize, DataTypes) {
     flight_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
       references: {
         model: 'flight_has_seat_class',
         key: 'flight_id'
       }
     },
-    class_id: {
+    seat_class_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
       references: {
         model: 'flight_has_seat_class',
         key: 'seat_class_id'
@@ -76,9 +74,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "id" },
-          { name: "bill_id" },
-          { name: "flight_id" },
-          { name: "class_id" },
         ]
       },
       {
@@ -101,7 +96,7 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "flight_id" },
-          { name: "class_id" },
+          { name: "seat_class_id" },
         ]
       },
     ]
