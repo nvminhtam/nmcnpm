@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: false
     },
-    arrivalTime: {
+    arrival_time: {
       type: DataTypes.DATE,
       allowNull: false
     },
@@ -26,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(45),
       allowNull: true
     },
-    empty_seat_count: {
+    total_seat_count: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
