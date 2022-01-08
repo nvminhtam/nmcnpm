@@ -16,17 +16,31 @@ FROM flight f
         ON f.departure_airport_id=b.id
 WHERE a.city LIKE '%${from}%' AND b.city LIKE '%${to}%';
 `);
+    // console.log(new Date(checkin).toDateString());
+    const compareDateString = (date1, date2) => {
+      return new Date(date1).toDateString() === new Date(date2).toDateString();
+    };
     const uniqueQuery = new Set([...query]);
-    const flights = [...uniqueQuery][0].map((flight) => {
-      return {
-        ...flight,
-        arrival_time: format(new Date(flight.arrival_time), 'yyyy-MM-dd HH:mm'),
-        departure_time: format(
-          new Date(flight.departure_time),
-          'yyyy-MM-dd HH:mm'
-        ),
-      };
-    });
+    const flights = [...uniqueQuery][0]
+      .filter((flight) => {
+        return checkin && checkout
+          ? compareDateString(flight.arrival_time, checkin) &&
+              compareDateString(flight.departure_time, checkout)
+          : flight;
+      })
+      .map((flight) => {
+        return {
+          ...flight,
+          arrival_time: format(
+            new Date(flight.arrival_time),
+            'yyyy-MM-dd HH:mm'
+          ),
+          departure_time: format(
+            new Date(flight.departure_time),
+            'yyyy-MM-dd HH:mm'
+          ),
+        };
+      });
     return res.render('flight/search', {
       title: 'Search',
       flights,

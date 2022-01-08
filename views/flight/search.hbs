@@ -1,28 +1,42 @@
 <div class='container d-flex justify-content-center align-items-center py-4'>
-  <div class='row w-100'>
-    {{#each flights}}
-      <div class='card col-4 mx-2'>
-        <div class='card-body d-flex flex-column align-items-center'>
-          <div>
-            <div class='brand'>
-              <img src='' alt='' />
-              <p class='h3'>Vietjet Air</p>
+  {{#if flights.length}}
+    <div class='row w-100 d-flex justify-content-center'>
+      {{#each flights}}
+        <div class='card col-5 m-2'>
+          <div class='card-body d-flex flex-column align-items-center'>
+            <div class="d-flex flex-column align-items-center">
+              <div class='brand'>
+                <img src='' alt='' />
+                <p class='h3'>Vietjet Air</p>
+              </div>
+              <div class='route d-flex align-items-center'><div class="d-flex flex-column align-items-center">
+                  <p class="h5">{{this.departure_time}}</p>
+                  <p class="text-primary">{{this.from_flight_code}}</p>
+                </div>
+                <div class="h1 mx-4">-</div>
+                <div class="d-flex flex-column align-items-center">
+                  <p class="h5">{{this.arrival_time}}</p>
+                  <p class="text-primary">{{this.to_flight_code}}</p>
+                </div>
+                </div>
+              <div class='price'>
+                <p>{{this.price}} VND/pax</p>
+                <button class='btn btn-primary'>Choose</button>
+              </div>
             </div>
-            <div class='route'>{{this.arrival_time}}
-              -
-              {{this.departure_time}}</div>
-            <div class='price'>
-              <p>{{this.price}} VND/pax</p>
-              <button class='btn btn-primary'>Choose</button>
+            <div class='flight-nav mt-2'>
+              <a class='mx-2' href='/flight/detail/{{this.id}}'>Flight Details</a>
+              <a class='mx-2' href='/flight/info/{{this.id}}'>Fare Info</a>
+              <a class='mx-2' href='/flight/refund/{{this.id}}'>Refund</a>
             </div>
-          </div>
-          <div class='flight-nav mt-2'>
-            <a class='mx-2' href='/flight/detail/{{this.id}}'>Flight Details</a>
-            <a class='mx-2' href='/flight/info/{{this.id}}'>Fare Info</a>
-            <a class='mx-2' href='/flight/refund/{{this.id}}'>Refund</a>
           </div>
         </div>
-      </div>
-    {{/each}}
-  </div>
+      {{/each}}
+    </div>
+  {{else}}
+    <div class='d-flex justify-content-center'>
+      <p><strong>Không tìm thấy chuyến bay nào</strong></p>
+    </div>
+  {{/if}}
+
 </div>
