@@ -47,8 +47,8 @@ header {
 
 .btn {
     padding: 0.5rem 2rem;
-    border: 1px solid var(--primary);
-    background-color: var(--primary);
+   
+   
     font-weight: 500;
     color: var(--white) !important;
 }
