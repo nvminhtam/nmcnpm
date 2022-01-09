@@ -8,13 +8,15 @@ module.exports = {
       req.query;
     try {
       const query =
-        await sequelize.query(`SELECT f.id, f.price price,a.city as from_city, b.city as to_city, a.symbol_code from_flight_code, b.symbol_code to_flight_code,
-       f.arrival_time,f.departure_time, a.airport_name as from_airport, b.airport_name as to_airport
+        await sequelize.query(`SELECT DISTINCT f.id, f.price price,a.city as from_city, b.city as to_city, a.symbol_code from_flight_code, b.symbol_code to_flight_code,
+       f.arrival_time,f.departure_time, a.airport_name as from_airport, b.airport_name as to_airport, p.airline_name
 FROM flight f
     INNER JOIN airport a
         ON f.arrival_airport_id=a.id
     INNER JOIN airport b
         ON f.departure_airport_id=b.id
+    INNER JOIN  extend_flight ef on a.id = ef.arrival_airport_id
+    INNER JOIN plane p on ef.plane_id = p.id
 WHERE a.city LIKE '%${from}%' AND b.city LIKE '%${to}%';
 `);
       // console.log(new Date(checkin).toDateString());
