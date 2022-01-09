@@ -9,14 +9,16 @@
                 <img src='' alt='' />
                 <p class='h3'>Vietjet Air</p>
               </div>
-              <div class='route d-flex align-items-center'><div class="d-flex flex-column align-items-center">
-                  <p class="h5">{{this.departure_time}}</p>
+              <div class='route d-flex align-items-center text-center'><div class="d-flex flex-column align-items-center">
+                  <p class="h5 text-nowrap">{{this.departure_time}}</p>
                   <p class="text-primary">{{this.from_flight_code}}</p>
+                  <p class="text-warning fw-bolder">{{this.from_airport}}</p>
                 </div>
                 <div class="h1 mx-4">-</div>
-                <div class="d-flex flex-column align-items-center">
-                  <p class="h5">{{this.arrival_time}}</p>
+                <div class="d-flex flex-column align-items-center text-center">
+                  <p class="h5 text-nowrap">{{this.arrival_time}}</p>
                   <p class="text-primary">{{this.to_flight_code}}</p>
+                  <p class="text-warning fw-bolder">{{this.to_airport}}</p>
                 </div>
                 </div>
               <div class='price'>
