@@ -15,21 +15,13 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id'
       }
     },
-    flight_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'flight',
-        key: 'id'
-      }
-    },
     last_name: {
       type: DataTypes.STRING(45),
-      allowNull: true
+      allowNull: false
     },
     first_name: {
       type: DataTypes.STRING(45),
-      allowNull: true
+      allowNull: false
     },
     email: {
       type: DataTypes.STRING(45),
@@ -41,15 +33,31 @@ module.exports = function(sequelize, DataTypes) {
     },
     num_of_travelers: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: false
     },
     amount: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     status: {
       type: DataTypes.STRING(45),
-      allowNull: true
+      allowNull: false
+    },
+    flight_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'flight_has_seat_class',
+        key: 'flight_id'
+      }
+    },
+    seat_class_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'flight_has_seat_class',
+        key: 'seat_class_id'
+      }
     }
   }, {
     sequelize,
@@ -73,17 +81,18 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "fk_Bill_Flight1_idx",
-        using: "BTREE",
-        fields: [
-          { name: "flight_id" },
-        ]
-      },
-      {
         name: "fk_Bill_Customer1_idx",
         using: "BTREE",
         fields: [
           { name: "customer_id" },
+        ]
+      },
+      {
+        name: "fk_bill_flight_has_seat_class1_idx1",
+        using: "BTREE",
+        fields: [
+          { name: "flight_id" },
+          { name: "seat_class_id" },
         ]
       },
     ]

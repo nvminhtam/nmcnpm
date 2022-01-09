@@ -1,0 +1,30 @@
+body {
+  padding-top: 84px;
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00b7ff;
+}
+
+.flight-banner {
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  background: url('../images/cover_bg_2.jpg'),linear-gradient(to right,rgba(255,62,28,.5) 0,rgba(255,140,0,.5) 100%);
+  /* background-image: ; */
+  background-position: center center;
+  background-size: cover;
+}
+
+.banner {
+  display: flex;
+  justify-content: center;
+  padding-left: 40px;
+  flex-direction: column;
+  color: white;
+}
+
+.banner > * {
+  margin-bottom: 12px;
+}

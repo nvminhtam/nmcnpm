@@ -6,6 +6,12 @@
     --white: #fff;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: "Roboto", sans-serif;
     font-size: 15px;
@@ -14,7 +20,7 @@ body {
 
 h2,
 h3 {
-    font-family: "Oswald", sans-serif;
+    font-family: 'Oswald', sans-serif;
 }
 
 a {
@@ -47,13 +53,9 @@ header {
 
 .btn {
     padding: 0.5rem 2rem;
-   
-   
     font-weight: 500;
     color: var(--white) !important;
 }
-
-
 
 .delete-btn {
     padding: 0.2rem 1rem;
@@ -75,14 +77,14 @@ header {
     padding: 0.2rem 1rem;
     line-height: 100%;
     border-radius: 5px;
-    border: 1px solid #0DCAF0;
-    background-color: #0DCAF0;
+    border: 1px solid #0dcaf0;
+    background-color: #0dcaf0;
     font-weight: 500;
     color: var(--white);
 }
 
 .blue-btn:hover {
-    color: #0DCAF0 !important;
+    color: #0dcaf0 !important;
     font-weight: 500;
     background-color: var(--white);
 }
@@ -147,7 +149,7 @@ header {
 .disabled {
     cursor: default;
     pointer-events: none;
-    opacity: .5;
+    opacity: 0.5;
 }
 
 @media screen and (max-width: 576px) {

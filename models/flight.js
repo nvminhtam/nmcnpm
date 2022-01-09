@@ -25,19 +25,19 @@ module.exports = function(sequelize, DataTypes) {
     },
     status: {
       type: DataTypes.STRING(45),
-      allowNull: true
+      allowNull: false
     },
     total_seat_count: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: false
     },
     booked_seat_count: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: false
     },
     price: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: false
     }
   }, {
     sequelize,
