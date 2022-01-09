@@ -2,7 +2,8 @@ const bill = require("../../models/bill");
 
 module.exports = {
     prebookingPage: (req, res) => {
-        const { idFlight } = req.query
+        const { id } = req.query
+        const { passengers } = req.params;
         res.render('prebooking/prebooking', { title: 'Prebooking' });
     },
     bookingDetail: (req, res) => {
@@ -11,15 +12,12 @@ module.exports = {
     },
     ticket: (req, res) => {
 
-        const passengers = [
-            {
-                firstName: "Minh",
-                lastName: "Tam",
-                email: "minhtam@gmail.com"
-            }
-        ]
-        const flights = [
-            {
+        const passengers = [{
+            firstName: "Minh",
+            lastName: "Tam",
+            email: "minhtam@gmail.com"
+        }]
+        const flights = [{
                 from: "Ho Chi Minh",
                 timeFrom: "5h",
                 to: "Da Nang",
