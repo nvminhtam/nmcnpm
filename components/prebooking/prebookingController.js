@@ -49,6 +49,6 @@ module.exports = {
         // console.log("e FLIGHT", price);
         // console.log("f FLIGHT", seatClass);
         const total = price.price * passenger;
-        res.render('prebooking/prebooking', { title: 'Prebooking', passenger, seatClass, extendFlight, transit, flight, departureAirport, arrivalAirport, price, total });
+        res.render('prebooking/prebooking', { title: 'Prebooking', passenger, seatClass, extendFlight, transit, flight, departureAirport, arrivalAirport, price, total, styles: ['prebooking'] });
     },
 }

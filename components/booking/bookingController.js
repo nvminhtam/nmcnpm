@@ -60,7 +60,7 @@ module.exports = {
                     ordinal_number: i + 1,
                 }
             }
-            res.render('booking/bookingDetail', { title: 'Booking Detail', passenger, passengerList, seatClass, extendFlight, transit, flight, departureAirport, arrivalAirport, price, total });
+            res.render('booking/bookingDetail', { title: 'Booking Detail', passenger, passengerList, seatClass, extendFlight, transit, flight, departureAirport, arrivalAirport, price, total, styles: ['booking'], scripts: ['booking.js'] });
         } catch (err) {
             res.status(500).send({ err: err.message });
         }
