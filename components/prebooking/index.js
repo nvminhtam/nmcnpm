@@ -3,6 +3,6 @@ const router = express.Router();
 
 const prebookingController = require('./prebookingController')
 
-router.get('/', prebookingController.prebookingPage);
+router.get('/:id', prebookingController.prebookingPage);
 
 module.exports = router;

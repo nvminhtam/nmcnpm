@@ -2,8 +2,8 @@
   {{#if flights.length}}
     <div class='row w-100 d-flex justify-content-center'>
       {{#each flights}}
-        <div class='card col-5 m-2'>
-          <div class='card-body d-flex flex-column align-items-center'>
+        <div class='card col-12 m-2'>
+          <div class='card-body mx-auto d-flex flex-column align-items-center'>
             <div class="d-flex flex-column align-items-center">
               <div class='brand'>
                 <img src='' alt='' />
@@ -23,13 +23,8 @@
                 </div>
               <div class='price'>
                 <p>{{this.price}} VND/pax</p>
-                <button class='btn btn-primary'>Choose</button>
+                <a type="submit" href="../prebooking/{{id}}?passenger={{../passenger}}&seatclass={{../flight_class}}" class='btn btn-primary'>Choose</a>
               </div>
-            </div>
-            <div class='flight-nav mt-2'>
-              <a class='mx-2' href='/flight/detail/{{this.id}}'>Flight Details</a>
-              <a class='mx-2' href='/flight/info/{{this.id}}'>Fare Info</a>
-              <a class='mx-2' href='/flight/refund/{{this.id}}'>Refund</a>
             </div>
           </div>
         </div>
