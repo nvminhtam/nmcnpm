@@ -1,11 +1,6 @@
 <div class='container d-flex flight-banner py-4'>
   <div class='card p-4'>
     <form action='/flight/search'>
-      <div class='btn-group w-100' role='group' aria-label='Basic example'>
-        <button type='button' class='btn btn-primary w-100'>Flight</button>
-        <button type='button' class='btn btn-secondary w-100'>Hotel</button>
-        <button type='button' class='btn btn-secondary w-100'>Packages</button>
-      </div>
       <div class='d-flex mt-3'>
         <div class='mr-3'>
           <label for='from' class='form-label'>From</label>
@@ -56,31 +51,17 @@
             id='flight-class'
             class='w-100 custom-select custom-select-lg'
           >
-            <option value='economy'>Economy</option>
-            <option value='first'>First</option>
-            <option value='business'>Business</option>
+            <option value='1'>Economy</option>
+            <option value='2'>Business</option>
           </select>
         </div>
       </div>
       <div class='d-flex mt-3 justify-content-between flex-row'>
         <div class='mr-3 w-100'>
-          <label for='adult' class='form-label'>Adult</label>
+          <label for='passenger' class='form-label'>Passenger(s)</label>
           <select
-            id='adult'
-            name='adult'
-            class='custom-select custom-select-lg w-100'
-          >
-            <option value='1'>1</option>
-            <option value='2'>2</option>
-            <option value='3'>3</option>
-            <option value='4'>4</option>
-          </select>
-        </div>
-        <div class='w-100'>
-          <label for='children' class='form-label'>children</label>
-          <select
-            id='children'
-            name='children'
+            id='passenger'
+            name='passenger'
             class='custom-select custom-select-lg w-100'
           >
             <option value='1'>1</option>

@@ -18,7 +18,6 @@
                 <div class="content ">
                     <div class="row text-header d-flex align-items-center">
                         <h4 class="col-auto font-weight-bold">Contact Details</h4>
-
                     </div>
                 </div>
                 <div class="content">
@@ -71,27 +70,27 @@
                                 </path>
                             </g>
                         </svg>
-                        <div class="col-auto">Ho Chi Minh City → Hue</div>
-
+                        <div class="col-auto">{{departureAirport.city}} → {{arrivalAirport.city}}</div>
                     </div>
-
                 </div>
                 <div class="content">
-                    <div class="row">
-                        <div class=" mt-0" style="font-weight:bold; font-size:14px">Departure • Thu, 27 Jan 2022</div>
+                    <div class="row mb-2">
+                        <div class=" mt-0" style="font-weight:bold; font-size:14px">Departure • {{dateFormat flight.departure_time "dddd, Do MMMM YYYY"}}</div>
+                    </div>
+                    {{#each extendFlight}}
+                    <div class="row mb-2 border-top">
+                        <div class="row">
+                        <div class="mt-2">{{airline_name}}</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="mt-0 form-text">{{../seatClass.name}}</div>
                     </div>
                     <div class="row">
-                        <div class="mt-2">MT Airline</div>
-                    </div>
-                    <div class="row">
-                        <div class="mt-0 form-text">Promo</div>
-                    </div>
-                    <div class="row mt-2">
                         <div class="col-3  ">
                             <div class="px-auto text-center">
                                 <div>06:50</div>
                             </div>
-                            <div class="symbol-code mx-auto"> SGN </div>
+                            <div class="symbol-code mx-auto"> {{departure_airport}} </div>
                         </div>
                         <div class="col-auto px-0">
                             <svg stroke-width="0" width="12" height="12" viewBox="0 0 12 12" fill="#8f8f8f"
@@ -106,24 +105,26 @@
                             <div class="text-center">
                                 <div>08:15</div>
                             </div>
-                            <div class="symbol-code mx-auto"> HUI </div>
+                            <div class="symbol-code mx-auto"> {{arrival_airport}} </div>
                         </div>
                         <div class="col">
-                            <div class="text-center"> 1h 25m </div>
-                            <div class="text-center">Direct</div>
+                            <div class="text-center"> {{flight_time}} </div>
+                            <div class="text-center">segment {{ordinal_number}}</div>
                         </div>
                     </div>
+                    </div>
+                    {{/each}}
                 </div>
 
 
             </div>
         </div>
-        <div class="row  d-flex align-items-start ">
+        {{#each passengerList}}
+        <div class="row  d-flex align-items-start mb-4">
             <div class=" col infor-box shadow pb-2" style=" margin-right: 20px;">
                 <div class="content ">
                     <div class="row text-header d-flex align-items-center">
-                        <h4 class="col-auto font-weight-bold">Passenger 1 Details</h4>
-
+                        <h4 class="col-auto font-weight-bold">Passenger {{ordinal_number}} Details</h4>
                     </div>
                 </div>
                 <div class="content">
@@ -138,9 +139,9 @@
                         </div>
                         <div class="col"></div>
                     </div>
-                    <div class="row  mt-2">
+                    {{!-- <div class="row  mt-2">
                         <div style="color: rgb(255, 165, 0);">Name as on ID card/passport (without tonal marks)</div>
-                    </div>
+                    </div> --}}
                     <div class="row">
                         <div class="col">
                             <label for="lastName" class="form-label">Last Name (e.g. Nguyen)*</label>
@@ -180,9 +181,9 @@
 
             </div>
             <div class="col-4">
-
             </div>
         </div>
+        {{/each}}
         <div class="row mb-2">
             <div class="col me-2 ps-0">
                 <div class="btn " style="width: 100%"> Continue</div>

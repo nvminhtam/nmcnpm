@@ -6,7 +6,7 @@
             <div class="col infor-box shadow">
                 <div class="content ">
                     <div class="row mb-1">
-                        <h4 class="font-weight-bold">Flight from Da Nang to Ho Chi Minh</h4>
+                        <h4 class="font-weight-bold">Flight from {{departureAirport.city}} to {{arrivalAirport.city}}</h4>
                     </div>
                     <div class="row mb-1">
                         <div class="col-auto icon">
@@ -33,11 +33,11 @@
                         </div>
                         <div class="col">
                             <div class="row mb-1">
-                                <div>Da Nang (DAD) → Ho Chi Minh City (SGN) | 13 Jan 2022</div>
+                                <div>{{departureAirport.city}} ({{departureAirport.symbol_code}}) → {{arrivalAirport.city}} ({{arrivalAirport.symbol_code}}) | {{dateFormat departureAirport.departure_time "DD/MM/YYYY"}}</div>
 
                             </div>
                             <div class="row">
-                                <div>1 Adult, 1 Child | Premium_economy</div>
+                                <div>{{passenger}} passenger(s) | {{seatClass.name}}</div>
                             </div>
 
                         </div>
@@ -45,12 +45,13 @@
                 </div>
             </div>
         </div>
-        <div class="row  d-flex align-items-start ">
-            <div class=" col infor-box shadow pb-2" style=" margin-right: 20px;">
-
+        <h4>Transit: {{transit}}</h4>
+        <div class="row d-flex align-items-start ">
+            <div class="col">
+                {{#each extendFlight}}
+                <div class=" col infor-box shadow pb-2" style=" margin-right: 20px;">
                 <div class="content ">
                     <div class="row text-header d-flex align-items-center">
-
                         <div class="col-auto icon">
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
                                 viewBox="0 0 172 172" style=" fill:#000000;">
@@ -73,32 +74,28 @@
                                 </g>
                             </svg>
                         </div>
-                        <div class="col-auto">Da nang (DAD)</div>
+                        <div class="col-auto"> {{departure_airport_name}}</div>
                         <div class="col-auto">
                             <img class="icon"
                                 src="https://img.icons8.com/pastel-glyph/64/000000/drag-right-arrow.png" />
                         </div>
-                        <div class="col-auto">Ho Chi Minh(HCM)</div>
-                        <div class="col d-flex justify-content-end">
-                            <a href="#">Flight Details</a>
-                        </div>
+                        <div class="col-auto">{{arrival_airport_name}}</div>
                     </div>
                 </div>
                 <div class="content">
                     <div class="row ">
-                        <div class="col">Thu,13 Jan 2022</div>
+                        <div class="col">{{dateFormat departure_time "dddd, DD/MM/YYYY"}}</div>
                     </div>
                     <div class="row d-flex justify-content-between">
-                        <div class="col-3 align-self-center">MT Airways</div>
-
+                        <div class="col-3 align-self-center">{{airline_name}}</div>
                         <div class="col-4 flight-time">
                             <div class="row ">
                                 <div class="col-auto ">
-                                    <div class="row">10:00</div>
-                                    <div class="row symbol-code">DAD</div>
+                                    <div class="row">{{dateFormat departure_time "HH:mm"}}</div>
+                                    <div class="row symbol-code">{{departure_airport}}</div>
                                 </div>
                                 <div class="col d-flex flex-column ">
-                                    <div class="align-self-center  ">1h35</div>
+                                    <div class="align-self-center  ">{{flight_time}}</div>
                                     <div class=" line"></div>
                                     <div class=" d-flex justify-content-between">
                                         <div class=" start-point"></div>
@@ -106,19 +103,20 @@
                                     </div>
                                 </div>
                                 <div class="col-auto">
-                                    <div class="row">10:00</div>
-                                    <div class="row symbol-code">DAD</div>
+                                    <div class="row">{{dateFormat arrival_time "HH:mm"}}</div>
+                                    <div class="row symbol-code">{{arrival_airport}}</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+            </div>
+            {{/each}}
             </div>
             <div class="col-4 infor-box shadow">
                 <div class="content">
                     <div class="row text-header d-flex align-items-center">
-                        <h5 class="row">Tóm tắt</h4>
+                        <h5 class="row">Price Details</h4>
                     </div>
                 </div>
                 <div class="content">
@@ -126,31 +124,33 @@
                         <tbody>
                             <tr class="row">
                                 <td class="col ">
-                                    <span class="_1KrnW _1EnnQ _2HSse">VietJet Air (Người lớn) x1</span>
+                                    <span class="_1KrnW _1EnnQ _2HSse">Passenger x{{passenger}}</span>
                                 </td>
                                 <td class="col d-flex justify-content-end">
                                     <div class="_2Zal8">
-                                        <span class="text-right">VND 353.600</span>
+                                        <span class="text-right">{{#currencyFormat price.price}}{{/currencyFormat}}</span>
                                     </div>
                                 </td>
                             </tr>
                             <tr class="row grey-box">
                                 <td class="col ">
-                                    <span class="_1KrnW _1EnnQ _2HSse">Giá bạn trả</span>
+                                    <span class="_1KrnW _1EnnQ _2HSse">Total</span>
                                 </td>
                                 <td class="col d-flex justify-content-end">
                                     <div class="_2Zal8">
-                                        <span class="_1KrnW _1EnnQ _2HSse _2LGIU">VND 353.600</span>
+                                        <span class="_1KrnW _1EnnQ _2HSse _2LGIU">{{#currencyFormat total}}{{/currencyFormat}}</span>
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-
+                <a type="submit" href="../booking/{{flight.id}}?passenger={{passenger}}&seatclass={{seatClass.id}}" class='btn btn-primary'>Tiếp tục</a>
                 <button class="btn btn-primary next-btn" type="button">Tiếp tục</button>
             </div>
         </div>
+        
+        
     </div>
 </main>
 <style>
