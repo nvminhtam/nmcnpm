@@ -119,46 +119,50 @@
                 </div>
                 {{/each}}
             </div>
-            <div class="col-4 infor-box shadow">
-                <div class="row content">
-                    <div class="col text-header d-flex align-items-center">
-                        <h5 class="row">Price Details</h4>
+            <div class="col-4">
+                <div class="infor-box shadow">
+                    <div class="content text-header">
+                        <div class="col  d-flex align-items-center">
+                            <h5>Price Details</h4>
+                        </div>
+                    </div>
+                    <div>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="col ">
+                                        <span class="_1KrnW _1EnnQ _2HSse">Passenger x{{passenger}}</span>
+                                    </td>
+                                    <td class="col d-flex justify-content-end">
+                                        <div class="_2Zal8">
+                                            <span class="text-right">{{#currencyFormat
+                                                price.price}}{{/currencyFormat}}</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="grey-box">
+                                    <td class="col ">
+                                        <span class="_1KrnW _1EnnQ _2HSse">Total</span>
+                                    </td>
+                                    <td class="col d-flex justify-content-end">
+                                        <div class="_2Zal8">
+                                            <span class="_1KrnW _1EnnQ _2HSse _2LGIU">{{#currencyFormat
+                                                total}}{{/currencyFormat}}</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col">
+                        <a type="submit"
+                            href="../booking/{{flight.id}}?passenger={{passenger}}&seatclass={{seatClass.id}}"
+                            class='btn btn-primary' style="width: 100%;">Continue</a>
+
                     </div>
                 </div>
-                <div class="content">
-                    <table class="table">
-                        <tbody>
-                            <tr class="row">
-                                <td class="col ">
-                                    <span class="_1KrnW _1EnnQ _2HSse">Passenger x{{passenger}}</span>
-                                </td>
-                                <td class="col d-flex justify-content-end">
-                                    <div class="_2Zal8">
-                                        <span class="text-right">{{#currencyFormat
-                                            price.price}}{{/currencyFormat}}</span>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="row grey-box">
-                                <td class="col ">
-                                    <span class="_1KrnW _1EnnQ _2HSse">Total</span>
-                                </td>
-                                <td class="col d-flex justify-content-end">
-                                    <div class="_2Zal8">
-                                        <span class="_1KrnW _1EnnQ _2HSse _2LGIU">{{#currencyFormat
-                                            total}}{{/currencyFormat}}</span>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col">
-                    <a type="submit" href="../booking/{{flight.id}}?passenger={{passenger}}&seatclass={{seatClass.id}}"
-                        class='btn btn-primary' style="width: 100%;">Continue</a>
-
-                </div>
             </div>
+
         </div>
     </div>
 </main>
