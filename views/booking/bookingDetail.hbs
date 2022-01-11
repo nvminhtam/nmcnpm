@@ -77,6 +77,9 @@
                     </div>
                     {{#each passengerList}}
                     <input id="passengerNumber" type="hidden" value="{{../passenger}}" class="form-control" />
+                    <input id="flightId" type="hidden" value="{{../flight.id}}" class="form-control" />
+                    <input id="price" type="hidden" value="{{../price.price}}" class="form-control" />
+                    <input id="seatClassId" type="hidden" value="{{../seatClass.id}}" class="form-control" />
                     <div class="row d-flex align-items-start mb-4">
                         <div class=" col infor-box shadow pb-2" style=" margin-right: 20px;">
                             <div class="content ">
@@ -134,25 +137,19 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <div class="col">
+                                    <div class="col-6">
                                         <div class="form-group">
-                                            <label for="passengerTelephone" class="form-label">Phone*</label>
-                                            <input type="tel" name="passengerTelephone"
-                                                id="passengerTelephone{{ordinal_number}}" class="form-control"
-                                                aria-describedby="passengerTelephoneHelpBlock">
-                                            <div id="passengerTelephoneHelpBlock" class="form-text">
-                                                Mobile No. 0812345678
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="passengerEmail" class="form-label">Mail*</label>
-                                            <input type="email" name="passengerEmail"
-                                                id="passengerEmail{{ordinal_number}}" class="form-control"
-                                                aria-describedby="passengerEmailHelpBlock">
-                                            <div id="passengerEmailHelpBlock" class="form-text">
-                                                e.g. email@example.com
+                                            <label for="passengerDOB" class="form-label">Date Of Birth (MM/DD/YYYY)*</label>
+                                            <div class="input-group date" id="dobDatePicker">
+                                                <span class="input-group-append">
+                                                    <span class="input-group-text bg-light d-block">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                </span>
+                                                <input type="text" class="form-control"id="passengerDOB{{ordinal_number}}"
+                                                        name="passengerDOB" />
+                                                
+                                                    
                                             </div>
                                         </div>
                                     </div>
@@ -162,7 +159,7 @@
                     </div>
                     {{/each}}
                     <div class="form-group">
-                        <div class="text-end mb-3" >
+                        <div class="text-end mb-3">
                             <button type="submit" class="btn btn-info" id="submit-form">Continue</button>
                         </div>
                     </div>
