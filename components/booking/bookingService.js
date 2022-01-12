@@ -138,7 +138,7 @@ module.exports = {
     planeList: () => models.plane.findAll({
         raw: true,
     }),
-    addBill: async(contactLastName, contactFirstName, contactTelephone, contactEmail, numOfPass, total, flightId, seatClassId, passenger) => models.bill.create({
+    addBill: async(contactLastName, contactFirstName, contactTelephone, contactEmail, numOfPass, total, flightId, seatClassId) => models.bill.create({
         //co log in log out se sua lai
         customer_id: 1,
         last_name: contactLastName,
@@ -150,15 +150,28 @@ module.exports = {
         status: "Reserved",
         flight_id: flightId,
         seat_class_id: seatClassId,
-    }).then(async res => {
+    }),
+    addTravelerDetail: async(billId, passenger) => {
         for (let i = 0; i < passenger.length; i++) {
             await models.traveler_details.create({
-                bill_id: res.id,
+                bill_id: billId,
                 title: passenger[i].passengerTitle,
                 last_name: passenger[i].passengerLastName,
                 first_name: passenger[i].passengerFirstName,
                 date_of_birth: new Date(passenger[i].passengerDOB),
             })
         }
-    }),
+    },
+    // .then(async res => {
+    //     for (let i = 0; i < passenger.length; i++) {
+    //         await models.traveler_details.create({
+    //             bill_id: res.id,
+    //             title: passenger[i].passengerTitle,
+    //             last_name: passenger[i].passengerLastName,
+    //             first_name: passenger[i].passengerFirstName,
+    //             date_of_birth: new Date(passenger[i].passengerDOB),
+    //         })
+    //     }
+    //     throw (res);
+    // }),
 }

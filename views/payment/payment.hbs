@@ -31,11 +31,9 @@
                                             <input type="text" name="contactLastName" id="contactLastName"
                                                 class="form-control" aria-describedby="contactLastNameHelpBlock">
                                             <div id="contactLastNameHelpBlock" class="form-text">
-
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col">
@@ -44,7 +42,6 @@
                                             <input type="tel" name="contactTelephone" id="contactTelephone"
                                                 class="form-control" aria-describedby="contactTelephoneHelpBlock">
                                             <div id="contactTelephoneHelpBlock" class="form-text">
-
                                             </div>
                                         </div>
                                     </div>
@@ -66,91 +63,6 @@
                                             <input type="tel" name="contactTelephone" id="contactTelephone"
                                                 class="form-control" aria-describedby="contactTelephoneHelpBlock">
                                             <div id="contactTelephoneHelpBlock" class="form-text">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {{#each passengerList}}
-                    <input id="passengerNumber" type="hidden" value="{{../passenger}}" class="form-control" />
-                    <input id="flightId" type="hidden" value="{{../flight.id}}" class="form-control" />
-                    <input id="price" type="hidden" value="{{../price.price}}" class="form-control" />
-                    <input id="seatClassId" type="hidden" value="{{../seatClass.id}}" class="form-control" />
-                    <div class="row d-flex align-items-start mb-4">
-                        <div class=" col infor-box shadow pb-2" style=" margin-right: 20px;">
-                            <div class="content ">
-                                <div class="row text-header d-flex align-items-center">
-                                    <h4 class="col-auto font-weight-bold">Passenger {{ordinal_number}} Details</h4>
-                                </div>
-                            </div>
-                            <div class="content">
-                                <div class="row mb-3">
-                                    <h5 style="color: rgb(255, 165, 0);">Name as on ID card/passport (without tonal
-                                        marks)</h5>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="passengerTitle"
-                                                class="form-label font-weight-bold">Title*</label>
-                                            <select class="form-select" aria-label="Default select example"
-                                                name="passengerTitle" id="passengerTitle{{ordinal_number}}">
-                                                <option value="default" hidden></option>
-                                                <option value="Mr.">Mr.</option>
-                                                <option value="Miss.">Miss.</option>
-                                                <option value="Mrs.">Mrs.</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col"></div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="passengerLastName" class="form-label">Last Name (e.g.
-                                                Nguyen)*</label>
-                                            <input type="text" name="passengerLastName"
-                                                id="passengerLastName{{ordinal_number}}" class="form-control"
-                                                aria-describedby="passengerLastNameHelpBlock">
-                                            <div id="passengerLastNameHelpBlock" class="form-text">
-                                                As on ID Card/passport/driving license (without degree or special
-                                                characters)
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="passengerFirstName" class="form-label">Middle & First Name (e.g.
-                                                Ngoc Anh)*</label>
-                                            <input type="text" name="passengerFirstName"
-                                                id="passengerFirstName{{ordinal_number}}" class="form-control"
-                                                aria-describedby="passengerFirstNameHelpBlock">
-                                            <div id="passengerFirstNameeHelpBlock" class="form-text">
-                                                As on ID Card/passport/driving license (without degree or special
-                                                characters)
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label for="passengerDOB" class="form-label">Date Of Birth
-                                                (MM/DD/YYYY)*</label>
-                                            <div class="input-group date" id="dobDatePicker">
-                                                <span class="input-group-append">
-                                                    <span class="input-group-text bg-light d-block">
-                                                        <i class="fa fa-calendar"></i>
-                                                    </span>
-                                                </span>
-                                                <input type="text" class="form-control"
-                                                    id="passengerDOB{{ordinal_number}}" name="passengerDOB" />
-
-
                                             </div>
                                         </div>
                                     </div>
@@ -158,7 +70,6 @@
                             </div>
                         </div>
                     </div>
-                    {{/each}}
                     <div class="form-group">
                         <div class="text-end mb-3">
                            <a type="submit"
@@ -170,7 +81,9 @@
                 <div class="col-4 infor-box shadow">
                     <div class="content">
                         <div class="row text-header d-flex align-items-center ">
-                            <svg class="col-auto pe-0" stroke-width="0" fill="#30C5F7" height="24" stroke="currentColor"
+                            <div>Booking ID</div>
+                            <div>762995296</div>
+                            {{!-- <svg class="col-auto pe-0" stroke-width="0" fill="#30C5F7" height="24" stroke="currentColor"
                                 stroke-linecap="round" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <g>
@@ -179,11 +92,26 @@
                                     </path>
                                 </g>
                             </svg>
-                            <div class="col-auto">{{departureAirport.city}} → {{arrivalAirport.city}}</div>
+                            <div class="col-auto">{{departureAirport.city}} → {{arrivalAirport.city}}</div> --}}
                         </div>
                     </div>
                     <div class="content">
-                        <div class="row mb-2">
+                        <div class="row text-header d-flex align-items-center ">
+                            <div>Your trip</div>
+                            <div>{{dateFormat flight.departure_time "DD MMMM YYYY"}}</div>
+                            <div>{{departureAirport.city}} ({{departureAirport.symbol_code}}) → {{arrivalAirport.city}}({{arrivalAirport.symbol_code}})</div>
+                            {{!-- <svg class="col-auto pe-0" stroke-width="0" fill="#30C5F7" height="24" stroke="currentColor"
+                                stroke-linecap="round" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g>
+                                    <path
+                                        d="M11.964558,6.14125661 L13.8541043,6.51916587 L18.4496899,2.52012268 C19.2945553,1.78492726 20.5835088,1.83683661 21.3736438,2.62697164 C22.1650971,3.41842491 22.2129336,4.70922562 21.4804928,5.55092556 L17.4814496,10.1465111 L17.8594278,12.0364023 C18.2650613,11.7637492 18.8153146,11.8028394 19.1734819,12.1610067 C19.5785205,12.5660453 19.5817196,13.2195436 19.1666108,13.6346524 L18.3436667,14.4575965 L19.4571198,20.0248621 C19.6924132,21.2013294 18.0749946,21.7715929 17.5203924,20.7077062 L13.7517141,13.4782961 L11.0209323,15.9043041 C10.8211477,16.0642187 10.5379244,16.2308982 10.1689883,16.3363433 C10.0940337,16.357766 10.0187022,16.3753374 9.94322578,16.3889171 L9.94322578,20.9616545 C9.94322578,22.0135724 8.55790407,22.3972843 8.01669675,21.4952721 L5.94993922,18.0506762 L2.50534335,15.9839187 C1.60333115,15.4427114 1.98704305,14.0573897 3.038961,14.0573897 L7.61169837,14.0573897 C7.62527807,13.9819133 7.64284943,13.9065817 7.66427211,13.8316272 C7.76971729,13.4626911 7.93639679,13.1794677 8.1308429,12.9387544 L10.521982,10.2487255 L3.29290925,6.48022306 C2.22902259,5.92562089 2.79928603,4.30820221 3.97575336,4.54349567 L9.54301892,5.65694879 L10.3659631,4.83400461 C10.7747965,4.42517121 11.4317463,4.41927109 11.8396087,4.82713358 C12.195861,5.18338587 12.241246,5.7318492 11.964558,6.14125661 L11.964558,6.14125661 Z">
+                                    </path>
+                                </g>
+                            </svg>
+                            <div class="col-auto">{{departureAirport.city}} → {{arrivalAirport.city}}</div> --}}
+                        </div>
+                        {{!-- <div class="row mb-2">
                             <div class=" mt-0" style="font-weight:bold; font-size:14px">Departure • {{dateFormat
                                 flight.departure_time "dddd, Do MMMM YYYY"}}</div>
                         </div>
@@ -223,7 +151,7 @@
                                 </div>
                             </div>
                         </div>
-                        {{/each}}
+                        {{/each}} --}}
                     </div>
 
                 </div>

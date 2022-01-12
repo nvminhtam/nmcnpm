@@ -72,7 +72,10 @@ module.exports = {
             const { contactLastName, contactFirstName, contactTelephone, contactEmail, price, flightId, seatClassId, passenger } = req.body;
             const total = price * passenger.length;
             const numOfPass = passenger.length;
-            await bookingService.addBill(contactLastName, contactFirstName, contactTelephone, contactEmail, numOfPass, total, flightId, seatClassId, passenger);
+            const bill = await bookingService.addBill(contactLastName, contactFirstName, contactTelephone, contactEmail, numOfPass, total, flightId, seatClassId, passenger);
+            console.log(bill.id);
+            await bookingService.addTravelerDetail(bill.id, passenger);
+            res.status(200).send({ billId: bill.id });
         } catch (err) {
             res.status(500).send({ err: err.message });
         }

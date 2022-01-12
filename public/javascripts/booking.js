@@ -167,7 +167,8 @@ function submitBookingDetailForm() {
         data: JSON.stringify(data), // data to submit
     }).done((res) => {
         $("#errorMessage").empty();
-        window.location.href = "/";
+        console.log(res);
+        window.location.href = '/payment/' + res.billId;
     }).fail((res) => {
         $("#errorMessage").empty();
         const msg = res.responseJSON.message;
