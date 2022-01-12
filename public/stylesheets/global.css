@@ -15,7 +15,7 @@
 body {
     font-family: "Roboto", sans-serif;
     font-size: 15px;
-    padding-top: 70px;
+    background-color: #fafbfe;
 }
 
 h2,
@@ -150,6 +150,22 @@ header {
     cursor: default;
     pointer-events: none;
     opacity: 0.5;
+}
+
+.payment-logo {
+    width: 64px;
+    height: 48px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    text-align: center;
+    background: #fff;
+    border-radius: 4px;
+    margin: 0 8px 8px 0;
+}
+
+.payment-logo img {
+    margin: auto;
 }
 
 @media screen and (max-width: 576px) {

@@ -1,10 +1,11 @@
 const bookingService = require('./bookingService');
 var Duration = require("duration");
+const async = require('hbs/lib/async');
 module.exports = {
     prebookingPage: async(req, res) => {
 
     },
-    bookingDetail: async(req, res) => {
+    bookingDetailPage: async(req, res) => {
         try {
             const { id } = req.params
             const { passenger, seatclass } = req.query;
@@ -51,7 +52,7 @@ module.exports = {
             // console.log("b FLIGHT", flight);
             // console.log("c FLIGHT", departureAirport);
             // console.log("d FLIGHT", arrivalAirport);
-            // console.log("e FLIGHT", price);
+            //console.log("e FLIGHT", price);
             // console.log("f FLIGHT", seatClass);
             const total = price.price * passenger;
             const passengerList = new Array();
@@ -61,6 +62,17 @@ module.exports = {
                 }
             }
             res.render('booking/bookingDetail', { title: 'Booking Detail', passenger, passengerList, seatClass, extendFlight, transit, flight, departureAirport, arrivalAirport, price, total, styles: ['booking'], scripts: ['booking.js'] });
+        } catch (err) {
+            res.status(500).send({ err: err.message });
+        }
+    },
+    bookingDetailForm: async(req, res) => {
+        try {
+            console.log(req.body);
+            const { contactLastName, contactFirstName, contactTelephone, contactEmail, price, flightId, seatClassId, passenger } = req.body;
+            const total = price * passenger.length;
+            const numOfPass = passenger.length;
+            await bookingService.addBill(contactLastName, contactFirstName, contactTelephone, contactEmail, numOfPass, total, flightId, seatClassId, passenger);
         } catch (err) {
             res.status(500).send({ err: err.message });
         }
