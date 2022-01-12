@@ -9,6 +9,8 @@ var hbs = require('hbs');
 // router
 const prebookingRouter = require('./components/prebooking');
 const bookingRouter = require('./components/booking');
+const paymentRouter = require('./components/payment')
+
 const flightRouter = require('./routes/flight');
 var indexRouter = require('./routes/index');
 // helpers
@@ -28,12 +30,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+ 
 // use routes
 app.use('/', indexRouter);
 app.use('/flight', flightRouter);
 app.use('/prebooking', prebookingRouter);
 app.use('/booking', bookingRouter);
+app.use('/payment', paymentRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));
