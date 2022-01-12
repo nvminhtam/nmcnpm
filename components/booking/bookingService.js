@@ -1,5 +1,6 @@
 const { models } = require('../../models');
 const sequelize = require('sequelize');
+const async = require('hbs/lib/async');
 const Op = sequelize.Op;
 
 const extendFlightListConfig = {
@@ -136,5 +137,28 @@ module.exports = {
     }),
     planeList: () => models.plane.findAll({
         raw: true,
+    }),
+    addBill: async(contactLastName, contactFirstName, contactTelephone, contactEmail, numOfPass, total, flightId, seatClassId, passenger) => models.bill.create({
+        //co log in log out se sua lai
+        customer_id: 1,
+        last_name: contactLastName,
+        first_name: contactFirstName,
+        email: contactEmail,
+        telephone: contactTelephone,
+        num_of_travelers: numOfPass,
+        amount: total,
+        status: "Reserved",
+        flight_id: flightId,
+        seat_class_id: seatClassId,
+    }).then(async res => {
+        for (let i = 0; i < passenger.length; i++) {
+            await models.traveler_details.create({
+                bill_id: res.id,
+                title: passenger[i].passengerTitle,
+                last_name: passenger[i].passengerLastName,
+                first_name: passenger[i].passengerFirstName,
+                date_of_birth: new Date(passenger[i].passengerDOB),
+            })
+        }
     }),
 }
