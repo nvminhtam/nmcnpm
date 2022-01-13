@@ -4,71 +4,37 @@
       <div class='d-flex mt-3'>
         <div class='mr-3'>
           <label for='from' class='form-label'>From</label>
-          <input
-            name='from'
-            id='from'
-            type='text'
-            class='form-control'
-            placeholder='Los Angeles, USA'
-          />
+          <input name='from' id='from' type='text' class='form-control' placeholder='Los Angeles, USA' />
         </div>
         <div>
           <label for='to' class='form-label'>To</label>
-          <input
-            name='to'
-            id='to'
-            type='text'
-            class='form-control'
-            placeholder='Tokyo, Japan'
-          />
+          <input name='to' id='to' type='text' class='form-control' placeholder='Tokyo, Japan' />
         </div>
       </div>
       <div class='d-flex mt-3'>
         <div class='mr-3 w-100'>
           <label for='checkin' class='form-label'>Checkin</label>
-          <input
-            name='checkin'
-            id='checkin'
-            type='date'
-            class='form-control w-100'
-          />
+          <input name='checkin' id='checkin' type='date' class='form-control w-100' />
         </div>
         <div class='w-100'>
           <label for='checkout' class='form-label'>Checkout</label>
-          <input
-            name='checkout'
-            id='checkout'
-            type='date'
-            class='form-control w-100'
-          />
+          <input name='checkout' id='checkout' type='date' class='form-control w-100' />
         </div>
       </div>
       <div class='mt-3'>
         <div>
           <label for='flight-class' class='form-label'>Class</label>
-          <select
-            name='flight_class'
-            id='flight-class'
-            class='w-100 custom-select custom-select-lg'
-          >
-            <option value='1'>Economy</option>
-            <option value='2'>Business</option>
+          <select name='flight_class' id='flight-class' class='w-100 custom-select custom-select-lg'>
+            {{#each seatClass}}
+            <option value={{id}}>{{name}}</option>
+            {{/each}}
           </select>
         </div>
       </div>
       <div class='d-flex mt-3 justify-content-between flex-row'>
         <div class='mr-3 w-100'>
           <label for='passenger' class='form-label'>Passenger(s)</label>
-          <select
-            id='passenger'
-            name='passenger'
-            class='custom-select custom-select-lg w-100'
-          >
-            <option value='1'>1</option>
-            <option value='2'>2</option>
-            <option value='3'>3</option>
-            <option value='4'>4</option>
-          </select>
+          <input id='passenger' name='passenger' type="number" value= "1"min="1" >
         </div>
       </div>
       <button type='submit' class='mt-3 w-100 btn btn-primary'>Search Flight</button>

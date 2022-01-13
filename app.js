@@ -7,11 +7,11 @@ var hbs = require('hbs');
 
 
 // router
+const homepageRouter = require('./components/homepage');
 const prebookingRouter = require('./components/prebooking');
 const bookingRouter = require('./components/booking');
 const paymentRouter = require('./components/payment')
-const flightRouter = require('./routes/flight');
-var indexRouter = require('./routes/index');
+const flightRouter = require('./components/flight');
 var billRouter = require('./components/bill');
 // helpers
 const helpers = require('./hbsHelpers');
@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // use routes
-app.use('/', indexRouter);
+app.use('/', homepageRouter);
 app.use('/flight', flightRouter);
 app.use('/prebooking', prebookingRouter);
 app.use('/booking', bookingRouter);
