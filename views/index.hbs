@@ -7,25 +7,37 @@
         <button type='button' class='btn btn-secondary w-100'>Packages</button>
       </div>
       <div class='d-flex mt-3'>
-        <div class='mr-3'>
+        <div class='mr-3 w-100'>
           <label for='from' class='form-label'>From</label>
-          <input
-            name='from'
-            id='from'
-            type='text'
-            class='form-control'
-            placeholder='Los Angeles, USA'
-          />
+          <div class='input-group mb-3'>
+            <select
+              class='custom-select'
+              id='from'
+              name='from'
+              aria-label='Example select with button addon'
+            >
+              <option selected>Choose...</option>
+              {{#each departAirport}}
+              <option value='{{this.airport_name}}'>{{this.airport_name}}</option>
+              {{/each}}
+            </select>
+          </div>
         </div>
-        <div>
+        <div class="w-100">
           <label for='to' class='form-label'>To</label>
-          <input
-            name='to'
-            id='to'
-            type='text'
-            class='form-control'
-            placeholder='Tokyo, Japan'
-          />
+          <div class='input-group mb-3'>
+            <select
+              class='custom-select'
+              id='to'
+              name='to'
+              aria-label='Example select with button addon'
+            >
+              <option selected>Choose...</option>
+              {{#each arrivalAirport}}
+              <option value='{{this.airport_name}}'>{{this.airport_name}}</option>
+              {{/each}}
+            </select>
+          </div>
         </div>
       </div>
       <div class='d-flex mt-3'>
