@@ -162,16 +162,4 @@ module.exports = {
             })
         }
     },
-    // .then(async res => {
-    //     for (let i = 0; i < passenger.length; i++) {
-    //         await models.traveler_details.create({
-    //             bill_id: res.id,
-    //             title: passenger[i].passengerTitle,
-    //             last_name: passenger[i].passengerLastName,
-    //             first_name: passenger[i].passengerFirstName,
-    //             date_of_birth: new Date(passenger[i].passengerDOB),
-    //         })
-    //     }
-    //     throw (res);
-    // }),
 }

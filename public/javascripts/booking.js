@@ -41,82 +41,81 @@ jQuery(document).ready(function($) {
     }).datepicker('update', new Date());
 });
 const validateInfo = {
-        rules: {
-            "contactLastName": {
-                required: true,
-            },
-            "contactFirstName": {
-                required: true,
-            },
-            "contactTelephone": {
-                required: true,
-                number: true,
-                maxlength: 10,
-            },
-            "contactEmail": {
-                required: true,
-                email: true
-            },
-            "passengerLastName": {
-                required: true,
-            },
-            "passengerFirstName": {
-                required: true,
-            },
-            "passengerDOB": {
-                required: true,
-                date: true,
-            },
-            "passengerTitle": {
-                valueNotEquals: "default"
-            },
+    rules: {
+        "contactLastName": {
+            required: true,
         },
-        messages: {
-            "contactLastName": {
-                required: "Please enter a last name",
-            },
-            "contactFirstName": {
-                required: "Please enter a first name",
-            },
-            "contactTelephone": {
-                required: "Please enter a telephone",
-                maxlength: "Telephone number must be at most 10 characters long",
-                number: "Please enter only number",
-            },
-            "contactEmail": {
-                required: "Please enter an email",
-            },
-            "passengerLastName": {
-                required: "Please enter a last name",
-            },
-            "passengerFirstName": {
-                required: "Please enter a first name",
-            },
-            "passengerDOB": {
-                required: "Please enter date of birth",
-            },
-            "passengerTitle": {
-                valueNotEquals: "Please select a title!"
-            },
+        "contactFirstName": {
+            required: true,
         },
-        errorPlacement: (error, element) => {
-            isValid = false;
-            element.css('background-color', '#ffdddd');
-            error.css('color', 'red');
-            error.css('margin-top', '10px');
-            error.insertAfter(element);
-            console.log(element.attr('name'));
-            if (element.attr('name') == "passengerDOB") {
-                error.css('width', '90%');
-            }
+        "contactTelephone": {
+            required: true,
+            number: true,
+            maxlength: 10,
         },
-        success: function(label, element) {
-            $(element).css('background-color', 'var(--mint)');
-            label.parent().removeClass('error');
-            label.remove();
+        "contactEmail": {
+            required: true,
+            email: true
         },
-    }
-    // validate and submit booking detail form
+        "passengerLastName": {
+            required: true,
+        },
+        "passengerFirstName": {
+            required: true,
+        },
+        "passengerDOB": {
+            required: true,
+            date: true,
+        },
+        "passengerTitle": {
+            valueNotEquals: "default"
+        },
+    },
+    messages: {
+        "contactLastName": {
+            required: "Please enter a last name",
+        },
+        "contactFirstName": {
+            required: "Please enter a first name",
+        },
+        "contactTelephone": {
+            required: "Please enter a telephone",
+            maxlength: "Telephone number must be at most 10 characters long",
+            number: "Please enter only number",
+        },
+        "contactEmail": {
+            required: "Please enter an email",
+        },
+        "passengerLastName": {
+            required: "Please enter a last name",
+        },
+        "passengerFirstName": {
+            required: "Please enter a first name",
+        },
+        "passengerDOB": {
+            required: "Please enter date of birth",
+        },
+        "passengerTitle": {
+            valueNotEquals: "Please select a title!"
+        },
+    },
+    errorPlacement: (error, element) => {
+        isValid = false;
+        element.css('background-color', '#ffdddd');
+        error.css('color', 'red');
+        error.css('margin-top', '10px');
+        error.insertAfter(element);
+        if (element.attr('name') == "passengerDOB") {
+            error.css('width', '90%');
+        }
+    },
+    success: function(label, element) {
+        $(element).css('background-color', 'var(--mint)');
+        label.parent().removeClass('error');
+        label.remove();
+    },
+};
+// validate and submit booking detail form
 $('#booking-detail-form').validate({
     ...validateInfo,
     submitHandler: function(form, event) {
@@ -161,7 +160,7 @@ function submitBookingDetailForm() {
     console.log(flightId);
     $.ajax({
         contentType: "application/json",
-        url: '/booking/{{flightId}}',
+        url: '/booking/' + flightId,
         dataType: "json",
         type: 'POST', // http method
         data: JSON.stringify(data), // data to submit

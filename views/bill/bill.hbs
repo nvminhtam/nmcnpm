@@ -1,93 +1,134 @@
 <!-- Container -->
 <div class="container-fluid itinerary-container">
-   
     <main>
-         <div class="row align-items-center">
-            <div class="col-sm-7 text-center text-sm-left mb-3 mb-sm-0"> <img id="logo" src="/images/logo.png"
-                    title="MT" alt="MT" /> </div>
+        <div class="row align-items-center">
+            <div class="col navbar-brand text-uppercase fw-bold logo-primary">
+                TiMa
+            </div>
             <div class="col-sm-5 text-center text-sm-right">
                 <h4 class="text-7 mb-0">Flight Itinerary</h4>
             </div>
         </div>
         <hr class="my-4">
-        {{#each bill.passengers}}
-        <div class="row">
-            <div class="col-sm-4"> <strong class="font-weight-600">Full Name:</strong>
-                <p>{{lastName}}, <span>{{firstName}}</span></p>
-                <strong class="font-weight-600">Email:</strong>
-                <p>{{email}}</p>
+        <h4>1.Booking Information</h4>
+        <div class="row mx-auto">
+            <div class="col"> <strong class="text-3 font-weight-600">Full Name:</strong>
+                <p class="text-2 font-weight-500">{{bill.last_name}} {{bill.first_name}}</p>
+                <strong class="text-3 font-weight-600">Email:</strong>
+                <p class="text-2 font-weight-500">{{bill.email}}</p>
             </div>
-            <div class="col-sm-4"> <strong class="font-weight-600">Purpose of Travel:</strong>
-                <p>Business Travel</p>
-                <strong class="font-weight-600">Code</strong>
-                <p>{{../bill.code}}</p>
+            <div class="col"> <strong class="text-3 font-weight-600">Telephone</strong>
+                <p class="text-2 font-weight-500">{{bill.telephone}}</p>
+                <strong class="text-3 font-weight-600">Code</strong>
+                <p class="text-2 font-weight-500">762995296</p>
             </div>
-           
         </div>
-        {{/each}}
-        {{#each bill.flights}}
-        <div class="card">
+        <h4>2.Passenger(s) Information</h4>
+        <div class="card mb-3">
+            <div class="card-body">
+                {{#each passengers}}
+                <div class="row">
+                    <div class="col  text-center time-info mt-3 mt-sm-0"> <span
+                            class="text-4 font-weight-500 text-dark">{{title}} {{last_name}} {{first_name}}</span>
+                    </div>
+                    <div class="col-3  text-center time-info mt-3 mt-sm-0"> <span
+                            class="text-2 font-weight-500 text-dark">{{dateFormat date_of_birth "DD/MM/YYYY"}}</span>
+                    </div>
+                    <div class="col-3 text-center time-info mt-3 mt-sm-0"> <span
+                            class="text-2 font-weight-500 text-dark">{{../seatClass.name}}</span>
+                    </div>
+                    <div class="col-3 text-center time-info mt-3 mt-sm-0"> <span
+                            class="text-2 font-weight-500 text-dark">{{#currencyFormat ../price.price}}{{/currencyFormat}}</span>
+                    </div>
+                </div>
+                <hr>
+                {{/each}}
+                <div class="row">
+                    <div class="col  text-center time-info mt-3 mt-sm-0"> <span
+                            class="text-5 font-weight-500 text-dark">Total</span>
+                    </div>
+                    <div class="col-3  text-center time-info mt-3 mt-sm-0"> <span
+                            class="text-2 font-weight-500 text-dark"></span>
+                    </div>
+                    <div class="col-3 text-center time-info mt-3 mt-sm-0"> <span
+                            class="text-2 font-weight-500 text-dark"></span>
+                    </div>
+                    <div class="col-3 text-center time-info mt-3 mt-sm-0"> <span
+                            class="text-2 font-weight-500 text-dark">{{#currencyFormat total}}{{/currencyFormat}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h4>3.Flight Information</h4>
+        {{#each extendFlight}}
+        <div class="card mb-3">
             <div class="card-header">
                 <div class="row align-items-center trip-title">
                     <div class="col-5 col-md-auto text-center text-md-left">
-                        <h5 class="m-0">{{from}}</h5>
+                        <h5 class="m-0">{{departure_city}} ({{departure_airport}})</h5>
                     </div>
                     <div class="col-2 col-md-auto text-8 text-black-50 text-center trip-arrow">➝</div>
                     <div class="col-5 col-md-auto text-center text-md-left">
-                        <h5 class="m-0">{{to}}</h5>
+                        <h5 class="m-0">{{arrival_city}} ({{arrival_airport}})</h5>
                     </div>
-                    <div class="col-12 col-md-auto text-3 text-dark text-center mt-2 mt-md-0 ml-md-auto"> {{timeArrive}}
+                    <div class="col-12 col-md-auto text-3 text-dark text-center mt-2 mt-md-0 ml-md-auto"> {{dateFormat
+                        departure_time "DD MMMM YYYY"}}
                     </div>
                 </div>
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-12 col-sm-3 text-center company-info"> <span
-                            class="text-4 font-weight-500 text-dark mt-1 mt-lg-0">{{plane}}</span> </div>
                     <div class="col-12 col-sm-3 text-center time-info mt-3 mt-sm-0"> <span
-                            class="text-5 font-weight-500 text-dark">{{timeFrom}}</span> <span
+                            class="text-5 font-weight-500 text-dark">{{airline_name}}</span> <span
+                            class="text-muted d-block">{{plane}}</span> </div>
+                    <div class="col-12 col-sm-3 text-center time-info mt-3 mt-sm-0"> <span
+                            class="text-5 font-weight-500 text-dark">{{dateFormat departure_time "HH:mm"}}</span> <span
                             class="text-muted d-block">Departure</span> </div>
                     <div class="col-12 col-sm-3 text-center time-info mt-3 mt-sm-0"> <span
-                            class="text-4 font-weight-500 text-dark">26h 18m</span> <span
+                            class="text-4 font-weight-500 text-dark">{{flight_time}}</span> <span
                             class="text-muted d-block">Duration</span> </div>
                     <div class="col-12 col-sm-3 text-center time-info mt-3 mt-sm-0"> <span
-                            class="text-5 font-weight-500 text-dark">{{timeArrive}}</span> <span
+                            class="text-5 font-weight-500 text-dark">{{dateFormat arrival_time "HH:mm"}}</span> <span
                             class="text-muted d-block">Arrival</span> </div>
                 </div>
                 <hr>
                 <div class="row d-flex ">
                     <div class="col-sm-8"><strong class="font-weight-600">Class of Service:</strong>
-                        <p>{{class}}</p>
+                        <p>{{../seatClass.name}}</p>
                     </div>
-                   
+
                     <div class="col-sm-4"><strong class="font-weight-600">Confirmation Status:</strong>
                         <p><span class="btn-sm  btn-success">Confirmed <i class="bi bi-check-circle"></i></span></p>
                     </div>
                 </div>
-                <hr class="mt-1">
-                <div class="row">
-                    <div class="row d-flex  justify-content-between"> <strong class="font-weight-600">Airport Info:</strong>
-                        <p class="col">Indira Gandhi Intl,<br>
-                            New Delhi<br>
-                            Terminal 2 </p>
-                        <p class="col"><br>
-                           To<br>
-                            </p>
-                        <p class="col">Kingsford Smith Airport,<br>
-                            Sydney<br>
-                            Terminal 1
+                <hr class="mt-1 ">
+                <div class="row mb-2">
+                    <div class="row d-flex  justify-content-between">
+                        <strong class="font-weight-600">Airport Info:</strong>
                     </div>
-                   
+                    <div class="row mx-auto">
+                        <p class="col-5">{{departure_airport_name}}<br>
+                            {{departure_city}}<br>
+                            {{departure_province}}
+                        </p>
+                        <p class="col-2"><br>
+                            To<br>
+                        </p>
+                        <p class="col-5">{{arrival_airport_name}}<br>
+                            {{arrival_city}}<br>
+                            {{arrival_province}}
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
         {{/each}}
-        
+
     </main>
     <!-- Main Content End -->
 
-   
-  
+
+
 
 </div>
 <!-- Container End -->
@@ -491,8 +532,8 @@
 /* =================================== */
     .itinerary-container {
         margin: 15px auto;
-        padding: 70px;
-        max-width: 850px;
+        padding: 50px;
+        max-width: 900px;
         background-color: #fff;
         border: 1px solid #ccc;
         -moz-border-radius: 6px;

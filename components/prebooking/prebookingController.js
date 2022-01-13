@@ -2,12 +2,12 @@ const prebookingService = require('./prebookingService');
 var Duration = require("duration");
 module.exports = {
     prebookingPage: async(req, res) => {
-        const { id } = req.params
+        const { flightId } = req.params
         const { passenger, seatclass } = req.query;
-        const flight = await prebookingService.findFlightById(id);
+        const flight = await prebookingService.findFlightById(flightId);
         const departureAirport = await prebookingService.findAirportById(flight.departure_airport_id);
         const arrivalAirport = await prebookingService.findAirportById(flight.arrival_airport_id);
-        const extendFlightList = await prebookingService.findExtendFlightById(id);
+        const extendFlightList = await prebookingService.findExtendFlightById(flightId);
         var transit;
         if (extendFlightList.length == 1) {
             transit = 'Direct';
@@ -40,7 +40,7 @@ module.exports = {
             }
         }
         const seatClass = await prebookingService.findSeatClassById(seatclass);
-        const price = await prebookingService.findPriceByIds(id, seatclass);
+        const price = await prebookingService.findPriceByIds(flightId, seatclass);
         // console.log("EXTEND FLIGHT", extendFlight);
         // console.log("a FLIGHT", transit);
         // console.log("b FLIGHT", flight);
