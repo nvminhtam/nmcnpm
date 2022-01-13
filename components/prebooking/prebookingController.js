@@ -41,13 +41,6 @@ module.exports = {
         }
         const seatClass = await prebookingService.findSeatClassById(seatclass);
         const price = await prebookingService.findPriceByIds(flightId, seatclass);
-        // console.log("EXTEND FLIGHT", extendFlight);
-        // console.log("a FLIGHT", transit);
-        // console.log("b FLIGHT", flight);
-        // console.log("c FLIGHT", departureAirport);
-        // console.log("d FLIGHT", arrivalAirport);
-        // console.log("e FLIGHT", price);
-        // console.log("f FLIGHT", seatClass);
         const total = price.price * passenger;
         res.render('prebooking/prebooking', { title: 'Prebooking', passenger, seatClass, extendFlight, transit, flight, departureAirport, arrivalAirport, price, total, styles: ['prebooking'] });
     },
