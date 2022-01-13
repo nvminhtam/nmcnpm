@@ -76,3 +76,7 @@ $('#payment-btn').click(function() {
         ...validateInfo,
     });
 })
+$('#exit-btn').click(function() {
+    event.preventDefault();
+    document.location.href = "/";
+})

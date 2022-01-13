@@ -11,7 +11,6 @@ const extendFlightListConfig = {
         'status',
         'total_seat_count',
         'booked_seat_count',
-        'price'
     ],
     required: true,
     include: [{
