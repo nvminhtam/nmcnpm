@@ -19,6 +19,8 @@
         "morgan": "~1.9.1",
         "mysql": "^2.18.1",
         "mysql2": "^2.3.3",
+        "nodemailer": "^6.7.2",
+        "nodemailer-express-handlebars": "^4.0.0",
         "sequelize": "^7.0.0-alpha.4",
         "sequelize-auto": "^0.8.8"
     },

@@ -1,5 +1,12 @@
 const { models } = require('../../models');
-
+const nodemailer = require('nodemailer');
+var Handlebars = require('handlebars');
+const fs = require('fs');
+const helpers = require('../../hbsHelpers');
+const path = require('path')
+const async = require('hbs/lib/async');
+const hbs = require('nodemailer-express-handlebars');
+const { da } = require('date-fns/locale');
 const extendFlightListConfig = {
     raw: true,
     attributes: [
@@ -28,44 +35,44 @@ const extendFlightListConfig = {
         duplicating: false,
         required: true,
         include: [{
-                model: models.airport,
-                as: 'departure_airport',
-                attributes: [
-                    'id',
-                    'airport_name',
-                    'symbol_code',
-                    'province',
-                    'city',
-                ],
-                duplicating: false,
-                required: true,
-            },
-            {
-                model: models.airport,
-                as: 'arrival_airport',
-                attributes: [
-                    'id',
-                    'airport_name',
-                    'symbol_code',
-                    'province',
-                    'city',
-                ],
-                duplicating: false,
-                required: true,
-            },
-            {
-                model: models.plane,
-                as: 'plane',
-                attributes: [
-                    'id',
-                    'airline_name',
-                    'aircraft_number',
-                ],
-                duplicating: false,
-                required: true,
-            }
+            model: models.airport,
+            as: 'departure_airport',
+            attributes: [
+                'id',
+                'airport_name',
+                'symbol_code',
+                'province',
+                'city',
+            ],
+            duplicating: false,
+            required: true,
+        },
+        {
+            model: models.airport,
+            as: 'arrival_airport',
+            attributes: [
+                'id',
+                'airport_name',
+                'symbol_code',
+                'province',
+                'city',
+            ],
+            duplicating: false,
+            required: true,
+        },
+        {
+            model: models.plane,
+            as: 'plane',
+            attributes: [
+                'id',
+                'airline_name',
+                'aircraft_number',
+            ],
+            duplicating: false,
+            required: true,
+        }
         ]
-    }, ],
+    },],
     order: [
         ['id', 'ASC']
     ]
@@ -151,4 +158,34 @@ module.exports = {
         }
     }),
     findSeatClassById: (id) => models.seat_class.findByPk(id, { raw: true }),
+    sendEmail: async (email, data) => {
+        try {
+            var transporter = await nodemailer.createTransport({ service: 'Gmail', auth: { user: "timaairline@gmail.com", pass: "airlinetima1@" } });
+
+            function render(filename, data) {
+                // Handlebars.registerHelper('dateFormat', require('handlebars-dateformat'));
+                helpers.helpers(Handlebars);
+                var source = fs.readFileSync(filename, 'utf8').toString();
+                var template = Handlebars.compile(source);
+                var output = template(data);
+                return output;
+            }
+
+          const result = render('./views/bill/billemail.hbs',data)
+            const mailOptions = {
+                from: "timaairline@gmail.com",
+                template: 'bill', 
+                to: email,
+                subject: 'Your payment sucessful',
+                //context: data
+                html: result,
+            };
+           // helpers.helpers(hbs);
+
+
+           await transporter.sendMail(mailOptions);
+        } catch (err) {
+            throw err;
+        }
+    }
 }
