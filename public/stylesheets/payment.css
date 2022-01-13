@@ -1,0 +1,128 @@
+label {
+    font-weight: bold;
+}
+
+option {
+    font-size: 20px;
+}
+
+.section {
+    background-color: #0770cd;
+    height: 152px;
+    margin-bottom: -56px;
+    width: 100%;
+}
+
+.card {
+    width: 960px;
+    margin: 0 auto;
+    border: 0;
+}
+
+.infor-box {
+    margin-bottom: 16px;
+    position: relative;
+    background-color: #fff;
+    border-radius: 6px;
+}
+
+.content {
+    padding-top: 8px;
+}
+
+.text-header {
+    border-bottom: 1px solid #dadada;
+    height: 65px;
+    line-height: 24px;
+    letter-spacing: .5px;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+}
+
+.symbol-code {
+    background-color: rgb(242, 243, 243);
+    border-radius: 10px;
+    width: fit-content;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.start-point {
+    height: 8px;
+    width: 8px;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid rgb(205, 208, 209);
+    padding: 0;
+}
+
+.line {
+    border-bottom: 1px solid rgb(193 193 193);
+    margin-bottom: -4px;
+}
+
+.grey-box {
+    background-color: #f6f6f6;
+    border-top: 1px solid #ebebeb;
+    border-bottom: 1px solid #ebebeb;
+    height: 30px;
+    padding-top: 6px;
+}
+
+.grey-box-content {
+    background-color: #f6f6f6;
+    border-bottom: 0;
+}
+
+.end-point {
+    height: 8px;
+    width: 8px;
+    padding: 0;
+    background-color: rgb(205, 208, 209);
+    border-radius: 10px;
+    border: 1px solid rgb(205, 208, 209);
+}
+
+.flight-time {
+    margin-right: 24px;
+}
+
+.next-btn {
+    width: 100%;
+}
+
+.border-bottom {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #dadada;
+}
+
+.sub-content {
+    font-size: 16px;
+}
+
+.font-weight-bold {
+    font-weight: bold;
+}
+
+.price-table {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.padding-left-15 {
+    padding-left: 15px;
+}
+
+.btn-payment {
+    background-color: rgb(255, 94, 31);
+    font-size: 18px;
+}
+
+.payment-content {
+    margin-left: auto;
+    font-size: 15px;
+}

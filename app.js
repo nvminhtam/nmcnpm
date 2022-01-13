@@ -7,10 +7,12 @@ var hbs = require('hbs');
 
 
 // router
+const homepageRouter = require('./components/homepage');
 const prebookingRouter = require('./components/prebooking');
 const bookingRouter = require('./components/booking');
-const flightRouter = require('./routes/flight');
-var indexRouter = require('./routes/index');
+const paymentRouter = require('./components/payment')
+const flightRouter = require('./components/flight');
+var billRouter = require('./components/bill');
 // helpers
 const helpers = require('./hbsHelpers');
 var app = express();
@@ -30,10 +32,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // use routes
-app.use('/', indexRouter);
+app.use('/', homepageRouter);
 app.use('/flight', flightRouter);
 app.use('/prebooking', prebookingRouter);
 app.use('/booking', bookingRouter);
+app.use('/payment', paymentRouter);
+app.use('/bill', billRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));

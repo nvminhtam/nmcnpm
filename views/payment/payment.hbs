@@ -1,0 +1,154 @@
+<main>
+    <div class="section">
+    </div>
+    <div class="card vh-200">
+        <div class="row ">
+            <div class="col infor-box shadow">
+                <div class="content ">
+                    <div class="row mb-1">
+                        <h4 class="font-weight-bold">Payment</h4>
+                        <div>Fill your credit card to payment</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <form id="payment-form" method="post">
+            <input id="billId" type="hidden" value="{{bill.id}}" class="form-control" />
+            <div class="row d-flex align-items-start ">
+                <div class="col">
+                    <div class="row">
+                        <div class=" col infor-box shadow mb-4" style=" margin-right: 20px;">
+                            <div class="content ">
+                                <div class="row text-header d-flex align-items-center">
+                                    <h4 class="col-auto font-weight-bold">Payment Details</h4>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="cardNumber" class="form-label">Card Number*</label>
+                                            <input type="text" name="cardNumber" id="cardNumber" class="form-control"
+                                                placeholder="16 digit card number">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">Valid till*</label>
+                                            <div class="row padding-left-15">
+                                                <input type="text" name="validMonth" id="validMonth"
+                                                    class="col validDate-col form-control" placeholder="MM">
+                                                <input type="text" data-date="" data-date-format="MM/YY"
+                                                    name="validYear" id="validYear"
+                                                    class="col validDate-col form-control" placeholder="YY">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="cvv" class="form-label">CVV*</label>
+                                            <input type="text" name="cvv" id="cvv" class="form-control"
+                                                placeholder="3 digit CVV">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="nameOnCard" class="form-label">Name on card*</label>
+                                            <input type="text" name="nameOnCard" id="nameOnCard" class="form-control"
+                                                placeholder="Name on card">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="row text-header d-flex align-items-center grey-box-content">
+                                    <h4 class="col-auto font-weight-bold">Price Details</h4>
+                                </div>
+                            </div>
+                            <div class="row grey-box-content mb-5">
+                                <table class="price-table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="col ">
+                                                <span class="sub-content">Passenger x{{passengers.length}}</span>
+                                            </td>
+                                            <td class="col d-flex justify-content-end">
+                                                <div>
+                                                    <span class="text-right sub-content">{{#currencyFormat
+                                                        price.price}}{{/currencyFormat}}</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="grey-box">
+                                            <td class="col ">
+                                                <span class="sub-content">Total</span>
+                                            </td>
+                                            <td class="col d-flex justify-content-end">
+                                                <div>
+                                                    <span class="sub-content">{{#currencyFormat
+                                                        total}}{{/currencyFormat}}</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div class="mb-3 ">
+                                            <button id="exit-btn" class='btn btn-primary'>Pay later
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div class="text-end mb-3 ">
+                                            <button id="payment-btn" class='btn btn-payment mb-2'>Pay with Credit Card
+                                            </button>
+                                            <div class="payment-content " style="width: 100%;">By clicking this button, you agree to TiMa's Term and Condition and Privacy Policy</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 infor-box shadow">
+                    <div class="content">
+                        <div class="row text-header d-flex align-items-center ">
+                            <h5>Booking ID</h5>
+                            <div class="sub-content">762995296</div>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="row d-flex align-items-center border-bottom">
+                            <h5>Your trip</h5>
+                            <div class="mb-2 sub-content">• {{dateFormat flight.departure_time "DD MMMM YYYY"}}</div>
+                            <div class="mb-2 sub-content">{{departureAirport.city}} ({{departureAirport.symbol_code}}) →
+                                {{arrivalAirport.city}}({{arrivalAirport.symbol_code}})</div>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="row d-flex align-items-center border-bottom">
+                            <h5>List of passenger(s)</h5>
+                            {{#each passengers}}
+                            <div class="mb-2 grey-box sub-content">{{title}} {{last_name}} {{first_name}}</div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <div id="errorMessage"></div>
+                <div id="successfullyMessage"></div>
+            </div>
+        </form>
+    </div>
+</main>

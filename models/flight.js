@@ -34,10 +34,6 @@ module.exports = function(sequelize, DataTypes) {
     booked_seat_count: {
       type: DataTypes.INTEGER,
       allowNull: false
-    },
-    price: {
-      type: DataTypes.INTEGER,
-      allowNull: false
     }
   }, {
     sequelize,

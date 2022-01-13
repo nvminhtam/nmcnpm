@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const {
-  searchFlightController,
-} = require('../components/flight/flightController');
+    searchFlightController,
+} = require('./flightController');
 
 const router = Router();
 

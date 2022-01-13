@@ -1,18 +1,17 @@
 const bookingService = require('./bookingService');
 var Duration = require("duration");
-const async = require('hbs/lib/async');
 module.exports = {
     prebookingPage: async(req, res) => {
 
     },
     bookingDetailPage: async(req, res) => {
         try {
-            const { id } = req.params
+            const { flightId } = req.params
             const { passenger, seatclass } = req.query;
-            const flight = await bookingService.findFlightById(id);
+            const flight = await bookingService.findFlightById(flightId);
             const departureAirport = await bookingService.findAirportById(flight.departure_airport_id);
             const arrivalAirport = await bookingService.findAirportById(flight.arrival_airport_id);
-            const extendFlightList = await bookingService.findExtendFlightById(id);
+            const extendFlightList = await bookingService.findExtendFlightById(flightId);
             var transit;
             if (extendFlightList.length == 1) {
                 transit = 'Direct';
@@ -46,14 +45,7 @@ module.exports = {
                 }
             }
             const seatClass = await bookingService.findSeatClassById(seatclass);
-            const price = await bookingService.findPriceByIds(id, seatclass);
-            // console.log("EXTEND FLIGHT", extendFlight);
-            // console.log("a FLIGHT", transit);
-            // console.log("b FLIGHT", flight);
-            // console.log("c FLIGHT", departureAirport);
-            // console.log("d FLIGHT", arrivalAirport);
-            //console.log("e FLIGHT", price);
-            // console.log("f FLIGHT", seatClass);
+            const price = await bookingService.findPriceByIds(flightId, seatclass);
             const total = price.price * passenger;
             const passengerList = new Array();
             for (let i = 0; i < passenger; i++) {
@@ -72,43 +64,46 @@ module.exports = {
             const { contactLastName, contactFirstName, contactTelephone, contactEmail, price, flightId, seatClassId, passenger } = req.body;
             const total = price * passenger.length;
             const numOfPass = passenger.length;
-            await bookingService.addBill(contactLastName, contactFirstName, contactTelephone, contactEmail, numOfPass, total, flightId, seatClassId, passenger);
+            const bill = await bookingService.addBill(contactLastName, contactFirstName, contactTelephone, contactEmail, numOfPass, total, flightId, seatClassId, passenger);
+            console.log(bill.id);
+            await bookingService.addTravelerDetail(bill.id, passenger);
+            res.status(200).send({ billId: bill.id });
         } catch (err) {
             res.status(500).send({ err: err.message });
         }
     },
-    ticket: (req, res) => {
+    // ticket: (req, res) => {
 
-        const passengers = [{
-            firstName: "Minh",
-            lastName: "Tam",
-            email: "minhtam@gmail.com"
-        }]
-        const flights = [{
-                from: "Ho Chi Minh",
-                timeFrom: "5h",
-                to: "Da Nang",
-                timeArrive: "6h",
-                plane: "Airbus 123",
-                class: "Economy"
+    //     const passengers = [{
+    //         firstName: "Minh",
+    //         lastName: "Tam",
+    //         email: "minhtam@gmail.com"
+    //     }]
+    //     const flights = [{
+    //             from: "Ho Chi Minh",
+    //             timeFrom: "5h",
+    //             to: "Da Nang",
+    //             timeArrive: "6h",
+    //             plane: "Airbus 123",
+    //             class: "Economy"
 
-            },
-            {
-                from: "Da Nang",
-                timeFrom: "6h30",
-                to: "Ha Noi",
-                timeArrive: "7h15",
-                plane: "Airbus 123",
-                class: "Economy"
-            },
+    //         },
+    //         {
+    //             from: "Da Nang",
+    //             timeFrom: "6h30",
+    //             to: "Ha Noi",
+    //             timeArrive: "7h15",
+    //             plane: "Airbus 123",
+    //             class: "Economy"
+    //         },
 
-        ]
-        const bill = {
-            code: "123",
-            passengers: passengers,
-            flights: flights,
-        }
+    //     ]
+    //     const bill = {
+    //         code: "123",
+    //         passengers: passengers,
+    //         flights: flights,
+    //     }
 
-        res.render('bill/bill', { title: 'Bill', bill: bill });
-    }
+    //     res.render('bill/bill', { title: 'Bill', bill: bill });
+    // }
 }
