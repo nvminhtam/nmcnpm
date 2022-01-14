@@ -147,8 +147,8 @@ module.exports = {
         num_of_travelers: numOfPass,
         amount: total,
         status: "Reserved",
-        flight_id: flightId,
-        seat_class_id: seatClassId,
+        flight_id: parseInt(flightId),
+        seat_class_id: parseInt(seatClassId),
     }),
     addTravelerDetail: async(billId, passenger) => {
         for (let i = 0; i < passenger.length; i++) {
@@ -161,4 +161,34 @@ module.exports = {
             })
         }
     },
+    findSeatCountByFlightId: async(flightId) => models.flight.findOne({
+        raw: true,
+        where: {
+            id: flightId,
+        }
+    }),
+    findSeatCountByIds: async(flightId, seatClassId) => models.flight_has_seat_class.findOne({
+        raw: true,
+        where: {
+            flight_id: flightId,
+            seat_class_id: seatClassId
+        }
+    }),
+    updateSeatCountByFlightId: (flightId, newValue) => models.flight.update({
+        booked_seat_count: newValue,
+
+    }, {
+        where: {
+            id: flightId,
+        }
+    }),
+    updateSeatCountByIds: (flightId, seatClassId, newValue) => models.flight_has_seat_class.update({
+        booked_seat_count: newValue,
+
+    }, {
+        where: {
+            flight_id: flightId,
+            seat_class_id: seatClassId
+        }
+    }),
 }

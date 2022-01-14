@@ -49,12 +49,12 @@ module.exports = {
             }
             const seatClass = await paymentService.findSeatClassById(bill.seat_class_id);
             const price = await paymentService.findPriceByIds(bill.flight_id, bill.seat_class_id);
-            const total = price.price * passengers.length; 
-            
-          await  paymentService.sendEmail(bill.email,{ title: "Bill", bill, passengers, extendFlight, seatClass, price, total, styles: ['bill'] } );
-            res.render("bill/bill", { title: "Bill", bill, passengers, extendFlight, seatClass, price, total });
+            const total = price.price * passengers.length;
+
+            await paymentService.sendEmail(bill.email, { title: "Bill", bill, passengers, extendFlight, seatClass, price, total });
+            res.render("bill/bill", { title: "Bill", bill, passengers, extendFlight, seatClass, price, total, styles: ['bill'] });
         } catch (err) {
             res.status(500).send({ err: err.message });
-        } 
+        }
     }
-} 
+}
