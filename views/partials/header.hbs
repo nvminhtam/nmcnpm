@@ -30,11 +30,12 @@
         {{#if user}}
           <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
             <li class="dropdown order-1">
-                    <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Hi, {{user.username}} <span class="caret"></span></button>
+                    <button type="button" id="dropdownMenu1" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Hi, {{user.username}} <span class="caret"></span></button>
                     <ul class="dropdown-menu dropdown-menu-right mt-4">
                        <li class="px-3 py-2">
                           <a href="/auth/profile">My Profile</a>
                         </li>
+                        <hr>
                         <li class="px-3 py-2">
                           <a href="/auth/logout">Logout</a>
                         </li>
@@ -44,24 +45,18 @@
         {{else}}
           <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
             <li class="dropdown order-1">
-                    <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login <span class="caret"></span></button>
+                    <button type="button" id="dropdownMenu1" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Login <span class="caret"></span></button>
                     <ul class="dropdown-menu dropdown-menu-right mt-2">
-                       <li class="px-3 py-2">
-                          {{#if wrongLogin}}
-                            <p style="color: red;">Email or Password is incorrect !!!</p>
-                          {{/if}}
-                          <form class="form" role="form" method="post" action="/auth/login">
-                              <div class="form-group">
+                       <li class="dropdown-item">
+                          <form method="post" action="/auth/login">
+                              <div class="mb-3">
                                   <input id="usernameInput" name="username" placeholder="Username" class="form-control form-control-sm" type="text" required="">
                               </div>
-                              <div class="form-group">
+                              <div class="mb-3">
                                   <input id="passwordInput" name="password" placeholder="Password" class="form-control form-control-sm" type="password" required="">
                               </div>
-                              <div class="form-group">
-                                  <button type="submit" class="btn btn-primary btn-block">Login</button>
-                              </div>
-                              <div class="form-group text-center">
-                                  <small><a href="#" >Forgot password?</a></small>
+                              <div class="mb-3">
+                                  <button type="submit" class="btn btn-primary form-control form-control-sm">Login</button>
                               </div>
                               <div class="form-group text-center">
                                   <small><a href="/auth/register" >Register</a></small>
