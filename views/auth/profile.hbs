@@ -1,0 +1,210 @@
+<div class="container d-flex flight-banner py-4">
+    <div class='card p-8'>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        {{#if message}}
+                            <h4 class="d-block" style="color:red; font-size: 1.5rem; font-weight: bold">{{message}}</h4>
+                            <a href="/auth/profile">Try again</a>
+                        {{else}}
+                        <div class="card-title mb-6">
+                            <div class="d-flex justify-content-start">
+                                <div class="userData ml-3">
+                                    <h3 class="d-block" style="font-size: 1.5rem; font-weight: bold">{{user.username}}</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="true">Basic Info</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="updateProfile-tab" data-toggle="tab" href="#updateProfile" role="tab" aria-controls="updateProfile" aria-selected="false">Update Profile</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="changePassword-tab" data-toggle="tab" href="#changePassword" role="tab" aria-controls="changePassword" aria-selected="false">Change Password</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content ml-1" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+                                        {{#with customer}}
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">First Name</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                {{first_name}}
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Last Name</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                {{last_name}}
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Email</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                {{email}}
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Phone</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                {{telephone}}
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        {{/with}}
+                                    </div>
+                                    <div class="tab-pane fade" id="updateProfile" role="tabpanel" aria-labelledby="updateProfile-tab">
+                                        <h4 id="updateAnnounce" class="d-block" style="color:red; font-size: 1.5rem; font-weight: bold"></h4>
+                                        <form name="updateProfile" method="post" action='/auth/updateProfile/{{user.userID}}'>
+                                            {{#with customer}}
+                                            <div class='d-flex mt-3'>
+                                                <div class='mr-3'>
+                                                <label for='first' class='form-label'>First Name</label>
+                                                <input
+                                                    name='firstname'
+                                                    id='firstname'
+                                                    type='text'
+                                                    class='form-control'
+                                                    value='{{first_name}}'
+                                                />
+                                                </div>
+                                                <div>
+                                                <label for='lastname' class='form-label'>Last Name</label>
+                                                <input
+                                                    name='lastname'
+                                                    id='lastname'
+                                                    type='text'
+                                                    class='form-control'
+                                                    value='{{last_name}}'
+                                                />
+                                                </div>
+                                            </div>
+                                            <div class='mt-3'>
+                                                <div>
+                                                <label for='email' class='form-label'>Email</label>
+                                                <input
+                                                    name='email'
+                                                    id='email'
+                                                    type="email"
+                                                    class='form-control'
+                                                    value='{{email}}'
+                                                />
+                                                </div>
+                                            </div>
+                                            <div class='mt-3'>
+                                                <div>
+                                                <label for='phone' class='form-label'>Phone</label>
+                                                <input
+                                                    name='telephone'
+                                                    id='phone'
+                                                    type="text"
+                                                    class='form-control'
+                                                    value='{{telephone}}'
+                                                />
+                                                </div>
+                                            </div>
+                                            <input type="button" onclick="checkUpdateForm();" class='mt-3 w-100 btn btn-primary' value="Update Profile"></input>
+                                        {{/with}}
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade" id="changePassword" role="tabpanel" aria-labelledby="changePassword-tab">
+                                        <form name="changePassword" method="post" action='/auth/changePassword/{{user.userID}}'>
+                                            <h4 id="changePassAnnounce" class="d-block" style="color:red; font-size: 1.5rem; font-weight: bold"></h4>
+                                            <div class='mt-3'>
+                                                <div>
+                                                <label for='currentPassword' class='form-label'>Current Password</label>
+                                                <input
+                                                    name='currentPassword'
+                                                    id='currentPassword'
+                                                    type="password"
+                                                    class='form-control'
+                                                />
+                                                </div>
+                                            </div>
+                                            <div class='mt-3'>
+                                                <div>
+                                                <label for='newPassword' class='form-label'>New Password</label>
+                                                <input
+                                                    name='newPassword'
+                                                    id='newPassword'
+                                                    type="password"
+                                                    class='form-control'
+                                                />
+                                                </div>
+                                            </div>
+                                            <div class='mt-3'>
+                                                <div>
+                                                <label for='confirmPassword' class='form-label'>Confirm Password</label>
+                                                <input
+                                                    name='confirmPassword'
+                                                    id='confirmPassword'
+                                                    type="password"
+                                                    class='form-control'
+                                                />
+                                                </div>
+                                            </div>
+                                            <input type="button" onclick="checkChangePassForm();" class='mt-3 w-100 btn btn-primary' value="Change Password"></input>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function checkUpdateForm(){
+        const email = document.getElementById('email'); 
+        const filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
+        if (!filter.test(email.value)) { 
+            document.getElementById('updateAnnounce').innerHTML="Email is invalid !!!";
+            email.focus; 
+            return; 
+        }
+        const phone = document.getElementById('phone')
+        if(phone.value[0] !== '0' || phone.value.length !== 10 || isNaN(phone.value))
+        {
+            document.getElementById('updateAnnounce').innerHTML="Phone is invalid !!!";
+            phone.focus;
+            return;
+        }
+        const updateForm = document.forms['updateProfile'];
+        updateForm.submit();
+    }
+
+    function checkChangePassForm(){
+        const newPass = document.getElementById('newPassword').value;
+        const confirmPass = document.getElementById('confirmPassword').value;
+        if(newPass !== confirmPass){
+            document.getElementById('changePassAnnounce').innerHTML="The new password and confirm password are not match !!!";
+            return;
+        }
+        const changePassForm = document.forms['changePassword'];
+        changePassForm.submit();
+    }
+</script>

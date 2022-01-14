@@ -11,6 +11,14 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
 //     dialect: 'mysql',
 //     timezone: '+07:00'
 // });
+//const sequelize = new Sequelize("mysql://doadmin:07TZPIrkKqJrHQ0Q@db-mysql-sgp1-23535-do-user-9572625-0.b.db.ondigitalocean.com:25060/NMCNPM?ssl-mode=REQUIRED");
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
+    dialect: 'mysql',
+    // dialectOptions: {
+    //     socketPath: process.env.DB_HOST
+    // },
+});
 
 module.exports = {
     sequelize,

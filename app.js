@@ -4,7 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var hbs = require('hbs');
-
+// var indexRouter = require('./routes/index');
+// var usersRouter = require('./routes/users');
+const session = require('express-session');
+const passport = require('./auth/passport');
 
 // router
 const homepageRouter = require('./components/homepage');
@@ -13,8 +16,13 @@ const bookingRouter = require('./components/booking');
 const paymentRouter = require('./components/payment')
 const flightRouter = require('./components/flight');
 var billRouter = require('./components/bill');
+const authRouter = require('./auth/authRouter');
 // helpers
 const helpers = require('./hbsHelpers');
+const flightRouter = require('./routes/flight');
+var indexRouter = require('./routes/index');
+
+
 var app = express();
 
 // view engine setup
@@ -30,14 +38,27 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({ secret: process.env.SESSION_SECRET }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+})
 
 // use routes
+
+app.use('/auth', authRouter);
 app.use('/', homepageRouter);
 app.use('/flight', flightRouter);
 app.use('/prebooking', prebookingRouter);
 app.use('/booking', bookingRouter);
 app.use('/payment', paymentRouter);
 app.use('/bill', billRouter);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
