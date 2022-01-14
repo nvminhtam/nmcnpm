@@ -20,7 +20,7 @@ FROM flight f
     INNER JOIN plane p on ef.plane_id = p.id
     INNER JOIN flight_has_seat_class fhsc on f.id = fhsc.flight_id
     INNER JOIN seat_class sc ON fhsc.seat_class_id = sc.id
-WHERE a.id=${Number(from)} AND b.id=${Number(to)} AND seat_class_id=${Number(
+WHERE a.id=${Number(to)} AND b.id=${Number(from)} AND seat_class_id=${Number(
           seat_class
         )};
 `);
