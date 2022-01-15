@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var hbs = require('hbs');
+const session = require('express-session');
+const passport = require('./components/auth/passport');
 
 
 // router
@@ -13,6 +15,7 @@ const bookingRouter = require('./components/booking');
 const paymentRouter = require('./components/payment')
 const flightRouter = require('./components/flight');
 var billRouter = require('./components/bill');
+const authRouter = require('./components/auth');
 // helpers
 const helpers = require('./hbsHelpers');
 var app = express();
@@ -30,8 +33,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({ secret: 'nmcnpm' }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use((req, res, next) => {
+    res.locals.user = req.user;
+    next();
+});
 
 // use routes
+app.use('/auth', authRouter);
 app.use('/', homepageRouter);
 app.use('/flight', flightRouter);
 app.use('/prebooking', prebookingRouter);
