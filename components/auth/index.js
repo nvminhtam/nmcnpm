@@ -22,9 +22,9 @@ router.get('/register', (req, res) => {
 });
 
 router.post('/register', async(req,res) => {
-    const {username, password} = req.body;
+    const {username, password, firstname, email, phone} = req.body;
     try {    
-        const account = await authService.register(username, password);
+        const account = await authService.register(username, password, firstname, email, phone);
         if(account){
             return res.render('auth/register',{message: 'Success'});
         }
